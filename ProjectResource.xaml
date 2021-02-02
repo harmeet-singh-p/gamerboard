@@ -3,10 +3,6 @@
                     xmlns:local="clr-namespace:GameProj">
     <DataTemplate DataType="{x:Type local:LeadersViemModel}">
         <local:LeadersUserControl />
-    </DataTemplate>
-
-    <DataTemplate DataType="{x:Type local:HomeViewModel}">
-        <Grid></Grid>
-    </DataTemplate>
+    </DataTemplate>      
 
 </ResourceDictionary>

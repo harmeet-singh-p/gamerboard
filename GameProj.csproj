@@ -57,12 +57,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="BannerControl.xaml.cs" />
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="BindedTableInfo.cs" />
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DetailViewModel.cs" />
     <Compile Include="GamesList.cs" />
+    <Compile Include="HomeUserControl.xaml.cs">
+      <DependentUpon>HomeUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HomeViewModel.cs" />
+    <Compile Include="ImageDetail.cs" />
     <Compile Include="LeadersUserControl.xaml.cs">
       <DependentUpon>LeadersUserControl.xaml</DependentUpon>
     </Compile>
@@ -77,6 +83,14 @@
     <Page Include="BannerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HomeUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HomeViewTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="LeadersUserControl.xaml">
       <SubType>Designer</SubType>
@@ -347,19 +361,19 @@
     <Content Include="images\sliders 1.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\slideshow\Plane01.jpeg">
+    <Content Include="images\slideshow\Ad1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\slideshow\Plane02.jpeg">
+    <Content Include="images\slideshow\Ad2.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\slideshow\Plane03.jpeg">
+    <Content Include="images\slideshow\Ad3.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\slideshow\Plane04.jpeg">
+    <Content Include="images\slideshow\Ad4.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="images\slideshow\Plane05.jpeg">
+    <Content Include="images\slideshow\Ad5.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\symbol-dollar.png">

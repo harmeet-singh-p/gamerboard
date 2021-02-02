@@ -21,34 +21,9 @@ namespace GameProj
     /// <summary>
     /// Interaction logic for MainPage.xaml
     /// </summary>
-    /// 
-    public class ImageDetail : INotifyPropertyChanged
-    {
-        bool isLoaded;
-        public string FileName { get; set; }
+    ///  
 
-        public bool IsLoaded
-        {
-            get
-            {
-                return isLoaded;
-            }
-            set
-            {
-                isLoaded = value;
-                OnPropertyRaised("IsLoaded");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyRaised(string propertyname)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
-            }
-        }
-    }
+   
 
     public partial class MainPage : Page
     {

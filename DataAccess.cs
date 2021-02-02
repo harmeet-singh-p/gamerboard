@@ -14,11 +14,16 @@ namespace GameProj
     public class DataAccess
     {
         string ConnectionString = string.Empty;
-            //@"Server=www.leaserp.com;Database=devtemp;User Id=devtemp;Password=an?bc2+6; Integrated Security =false;";
+        //@"Server=www.leaserp.com;Database=devtemp;User Id=devtemp;Password=an?bc2+6; Integrated Security =false;";
+        string directory;
+
+
 
         public DataAccess()
         {
             ConnectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
+            directory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
+            directory += "\\images\\news\\";
         }
 
         public IList<BindedTableInfo> GetTableInfos(string gamecode)
@@ -46,51 +51,39 @@ namespace GameProj
 
         internal IList<NewsViewModel> LoadNews(int pi_frcount, int pi_tocount)
         {
-            var directory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
-            directory = directory + "\\images\\news\\";           
-
-            List<NewsViewModel> newsVM = new List<NewsViewModel>();
-            newsVM.Add(new NewsViewModel { NewsImage = directory + "news1.jpg", NewsText = "Logitech G Pro Mouse includes", HTML = "", PostBy = "Posted By Admin, on 13/06/2020" });
-            newsVM.Add(new NewsViewModel { NewsImage = directory + "news2.png", NewsText = "'Valorent' ranked mode out 'so...", HTML = "", PostBy = "Posted By Admin, on 13/06/2020" });
-            newsVM.Add(new NewsViewModel { NewsImage = directory + "news2.png", NewsText = "Call of duty league opener wa...", HTML = "", PostBy = "Posted By Admin, on 13/06/2020" });
-            newsVM.Add(new NewsViewModel { NewsImage = directory + "news2.png", NewsText = "What will be the price of playstation...", HTML = "", PostBy = "Posted By Admin, on 13/06/2020" });
-            newsVM.Add(new NewsViewModel { NewsImage = directory + "news1.jpg", NewsText = "Can gaming be my profession?", HTML = "", PostBy = "Posted By Admin, on 13/06/2020" });
-            return newsVM;
-
+           
             // DO NOT DELETE COMMENTED CODE
 
-            //var resultList = new List<NewsViewModel>();
-            //var con = new SqlConnection(ConnectionString);
-            //con.Open();            
-            //var command = new SqlCommand("select * from [dbo].[f_get_newsitems](@pi_frcount,@pi_tocount)", con);
-            //command.Parameters.AddWithValue("@pi_frcount", pi_frcount);
-            //command.Parameters.AddWithValue("@pi_tocount", pi_tocount);
-            //using (var sqlReader = command.ExecuteReader())
-            //{
-            //    while (sqlReader.Read())
-            //    {
-            //        var newsVM = new NewsViewModel();
-            //       
-            //        string newsImage = sqlReader.GetString(0);
-            //        var directory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
-            //        directory = directory + "\\images\\news\\";
+            var resultList = new List<NewsViewModel>();
+            var con = new SqlConnection(ConnectionString);
+            con.Open();
+            var command = new SqlCommand("select * from [dbo].[f_get_newsitems](@pi_frcount,@pi_tocount)", con);
+            command.Parameters.AddWithValue("@pi_frcount", pi_frcount);
+            command.Parameters.AddWithValue("@pi_tocount", pi_tocount);
+            using (var sqlReader = command.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    var newsVM = new NewsViewModel();
 
-            //        if (File.Exists(directory + newsImage))
-            //        {
-            //            newsVM.Image = directory + newsImage;
-            //        }
-            //        else
-            //        {
-            //            newsVM.Image = directory + "news1.png";
-            //        }
-            //       
-            //        newsVM.Text = Convert.ToString(sqlReader.GetString(1));
-            //        newsVM.HTML = Convert.ToString(sqlReader.GetString(2));
-            //        newsVM.PostBy = Convert.ToString(sqlReader.GetString(2));
-            //        newsVM.Add(newsVM);
-            //    }
-            //}
-            //return resultList;
+                    string newsImage = sqlReader.GetString(1);                  
+
+                    if (File.Exists(directory + newsImage))
+                    {
+                        newsVM.NewsImage = directory + newsImage;
+                    }
+                    else
+                    {
+                        newsVM.NewsImage = directory + "news1.png";
+                    }
+
+                    newsVM.NewsText = Convert.ToString(sqlReader.GetString(2));
+                    newsVM.HTML = Convert.ToString(sqlReader.GetString(3));
+                    newsVM.PostBy = Convert.ToString(sqlReader.GetString(4));
+                    resultList.Add(newsVM);
+                }
+            }
+            return resultList;
         }
 
         public IList<UserViewModel> GetUserInfos()

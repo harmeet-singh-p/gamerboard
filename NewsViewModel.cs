@@ -1,6 +1,6 @@
 ﻿namespace GameProj
 {
-    internal class NewsViewModel
+    public class NewsViewModel
     {
         public string NewsImage { get; set; }
 
