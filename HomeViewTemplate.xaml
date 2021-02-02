@@ -10,13 +10,16 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>                
             </Grid.RowDefinitions>
 
-            <Grid  x:Name="TopLeft" >
+            <Grid  x:Name="Left" >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
                 <Border Margin="10" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}">
-                    <Grid x:Name="TopLeft1">
+                    <Grid x:Name="TopLeft">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="30"></RowDefinition>
                             <RowDefinition></RowDefinition>
@@ -30,7 +33,7 @@
 
                         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" x:Name="btnTopLeftSeeMore" VerticalAlignment="Center"
                            Style="{DynamicResource style_mainwindow_seemore}" Command="{Binding SeeMoreNews}" ></Button>
-                                <!--Click="btnTopLeftSeeMore_Click"--> 
+                        <!--Click="btnTopLeftSeeMore_Click"-->
 
                         <ListBox ItemsSource="{Binding NewsVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1"
                              Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" 
@@ -86,18 +89,29 @@
 
                     </Grid>
                 </Border>
+                <Grid Grid.Row="1"  x:Name="BottonLeft" >
+                    <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
+
+                    </Border>
+                </Grid>
+
+            
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="1"  x:Name="TopMiddle"  >
+            <Grid Grid.Row="0" Grid.Column="1"  x:Name="Middle"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
                 <Border Margin="10" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}" >
-                    <Grid Width="595" Height="351">
+                    <Grid x:Name="TopMiddle" Width="595" Height="351">
                         <Image Stretch="Uniform" Source="{Binding ImagePath}" Width="595" Height="351"/>
                         <Button Name="btnPrevious" Background="#727A7A7A"  BorderBrush="Black" Content="&lt;" HorizontalAlignment="Left"  
                                 Width="60" Height="30" Command="{Binding LoadPrevAdv}" />
-                                <!--Click="btnPrevious_Click"--> 
+                        <!--Click="btnPrevious_Click"-->
                         <Button Name="btnNext" Background="#727A7A7A" BorderBrush="Black" Content="&gt;" HorizontalAlignment="Right" 
                                 Width="60" Height="30" Command="{Binding LoadNextAdv}" />
-                                <!--Click="btnNext_Click"-->
+                        <!--Click="btnNext_Click"-->
                         <ListBox Name="listBoxDots" ItemsSource="{Binding  ImageArray}"  BorderThickness="0" HorizontalAlignment="Right" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" Margin="0,0,20,40"  VerticalAlignment="Bottom" Width="479">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
@@ -131,29 +145,36 @@
                         </ListBox>
                     </Grid>
                 </Border>
+
+
+                <Grid Grid.Row="1" x:Name="BottonMiddle" >
+                    <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
+
+                    </Border>
+                </Grid>
+                
             </Grid>
 
-            <Grid Grid.Row="0" Grid.Column="2" x:Name="TopRight"  >
+            <Grid Grid.Row="0" Grid.Column="2" x:Name="Right"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
                 <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
-
+                    <Grid x:Name="TopRight">
+                        
+                    </Grid>
                 </Border>
+                <Grid Grid.Row="1" x:Name="BottonRight"  >
+                    <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
+
+                    </Border>
+                </Grid>
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="0"  x:Name="BottonLeft" >
-                <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
-
-                </Border>
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="1"  x:Name="BottonMiddle" >
-                <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
-
-                </Border>
-            </Grid>
-            <Grid Grid.Row="1" Grid.Column="2"  x:Name="BottonRight"  >
-                <Border Margin="10" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
-
-                </Border>
-            </Grid>
+          
+           
+           
 
         </Grid>
     </DataTemplate>

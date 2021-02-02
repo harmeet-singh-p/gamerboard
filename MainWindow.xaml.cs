@@ -74,7 +74,7 @@ namespace GameProj
             try
             {
                 ResetMenuButton();
-                ShowContent("");
+                ShowContent("main");
                 var obj = (Button)sender;
                 if (obj.Tag.ToString() == "clicked")
                 {
@@ -286,6 +286,7 @@ namespace GameProj
             {
                 if (name == "main")
                 {
+                    mainWindowViewModel.LoadedObject = homeViewModel;
                     //sv_content.Visibility = Visibility.Visible;
                     //sv_dummy.Visibility = Visibility.Collapsed;
                 }
