@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DemoWpfApp
+namespace GameProj
 {
     internal class Common
     {

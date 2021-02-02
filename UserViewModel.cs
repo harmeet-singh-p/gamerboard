@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DemoWpfApp
+namespace GameProj
 {
     public class UserViewModel
     {
@@ -13,6 +13,8 @@ namespace DemoWpfApp
         public string CenterRanking { get; set; }
 
         public string LoyaltyPoints { get; set; }
-        
+
+        public string UserImage { get; set; }
+
     }
 }
