@@ -367,14 +367,18 @@ namespace GameProj
             {
                 PlayerName.Text = detailViewModel.Col3;
                 Center.Text = detailViewModel.Col4;
-                Points.Text = detailViewModel.Col11;
+                var matchedItem = bindedTableInfoList.FirstOrDefault(x => x.DetPos == "Title_Pts");
+                if (matchedItem != null)
+                {
+                    Points.Text = GetPropValue(detailViewModel, "Col" + matchedItem.ColNo);
+                }
                 var uri = new Uri(detailViewModel.Col2);
                 var bitmap = new BitmapImage(uri);
                 PlayerImage.Source = bitmap;
 
                 if (bindedTableInfoList.Count > 0)
                 {
-                    var validDataForBanner = bindedTableInfoList.Where(x => x.ColShowIn == "Both" || x.ColShowIn == "Deatil");
+                    var validDataForBanner = bindedTableInfoList.Where(x => x.ColShowIn == "Both" || x.ColShowIn == "Detail");
                     var noOfRows = validDataForBanner.Where(x => x.DetPos.Contains(',')).Select(x => Convert.ToInt32(x.DetPos.Split(',').First())).Max();
                     var noOfColumns = validDataForBanner.Where(x => x.DetPos.Contains(',')).Select(x => Convert.ToInt32(x.DetPos.Split(',').Last())).Max();
                     bannerGrid.Children.Clear();
