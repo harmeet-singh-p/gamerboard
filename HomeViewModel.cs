@@ -107,11 +107,11 @@ namespace GameProj
             //BitmapImage image = new BitmapImage();
             //image.BeginInit();
             var item = ImageArray.ElementAt(ctr - 1);
-            //foreach (var im in imageArray)
-            //{
-            //    im.IsLoaded = false;
-            //}
-            //item.IsLoaded = true;
+            foreach (var im in ImageArray)
+            {
+                im.IsLoaded = false;
+            }
+            item.IsLoaded = true;
             //image.UriSource = new Uri(item.FileName, UriKind.Relative);
 
             //image.EndInit();
@@ -124,7 +124,7 @@ namespace GameProj
             ctr--;
             if (ctr < 1)
             {
-                ctr = ImageArray.Count - 1;
+                ctr = ImageArray.Count;
             }
             PlaySlideShow(ctr);
         }

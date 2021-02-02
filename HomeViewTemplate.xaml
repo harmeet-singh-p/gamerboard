@@ -100,19 +100,17 @@
 
             <Grid Grid.Row="0" Grid.Column="1"  x:Name="Middle"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Margin="10" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}" >
-                    <Grid x:Name="TopMiddle" Width="595" Height="351">
-                        <Image Stretch="Uniform" Source="{Binding ImagePath}" Width="595" Height="351"/>
-                        <Button Name="btnPrevious" Background="#727A7A7A"  BorderBrush="Black" Content="&lt;" HorizontalAlignment="Left"  
-                                Width="60" Height="30" Command="{Binding LoadPrevAdv}" />
-                        <!--Click="btnPrevious_Click"-->
-                        <Button Name="btnNext" Background="#727A7A7A" BorderBrush="Black" Content="&gt;" HorizontalAlignment="Right" 
-                                Width="60" Height="30" Command="{Binding LoadNextAdv}" />
-                        <!--Click="btnNext_Click"-->
-                        <ListBox Name="listBoxDots" ItemsSource="{Binding  ImageArray}"  BorderThickness="0" HorizontalAlignment="Right" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" Margin="0,0,20,40"  VerticalAlignment="Bottom" Width="479">
+                    <Grid x:Name="TopMiddle" >
+                        <Image Stretch="Uniform" Source="{Binding ImagePath}" />
+                        <Button Name="btnPrevious" Style="{StaticResource style_mainwindow_button_Left_banner_navigate}" Command="{Binding LoadPrevAdv}" />
+                        <!--Content="&lt;" Click="btnPrevious_Click"-->
+                        <Button Name="btnNext"  Style="{StaticResource style_mainwindow_button_Right_banner_navigate}"  Command="{Binding LoadNextAdv}" />
+                        <!-- Content="&gt;"Click="btnNext_Click"-->
+                        <ListBox Name="listBoxDots" ItemsSource="{Binding  ImageArray}"  BorderThickness="0" HorizontalAlignment="Right" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Background="Transparent" Margin="0,0,10,10"  VerticalAlignment="Bottom" >
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" />
@@ -133,7 +131,7 @@
                                                     <Setter Property="Fill" Value="Transparent" />
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding  IsLoaded}"  Value="True">
-                                                            <Setter Property="Fill" Value="Red" />
+                                                            <Setter Property="Fill" Value="Aqua" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
