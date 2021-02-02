@@ -62,15 +62,25 @@
     <Compile Include="DataAccess.cs" />
     <Compile Include="DetailViewModel.cs" />
     <Compile Include="GamesList.cs" />
+    <Compile Include="HomeViewModel.cs" />
+    <Compile Include="LeadersUserControl.xaml.cs">
+      <DependentUpon>LeadersUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LeadersViemModel.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="NewsViewModel.cs" />
     <Compile Include="TextInputToVisibilityConverter.cs" />
     <Compile Include="UserViewModel.cs" />
     <Page Include="BannerControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="LeadersUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -92,6 +102,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ProjectResource.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -7,6 +7,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="MainDictionary.xaml" ></ResourceDictionary>
+                <ResourceDictionary  Source="ProjectResource.xaml" ></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
             
             <RadialGradientBrush x:Key="windowBrush">

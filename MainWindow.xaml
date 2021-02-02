@@ -7,345 +7,105 @@
         mc:Ignorable="d"
         Title="Leaders Board" Height="450" Width="800"
         Name="window_gamelist" Style="{StaticResource style_mainwindow_window_gamelist}">
-
-    <Window.Resources>
-        <local:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter"></local:TextInputToVisibilityConverter>
-    </Window.Resources>
-    
     <Grid>
-        <Grid >
-            <Border Background="#18191C">
-                <Grid x:Name="grid_main" Style="{StaticResource style_mainwindow_grid_grid_main}">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1*"></ColumnDefinition>
-                        <ColumnDefinition Width="16*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid x:Name="grid_sidemenu" Style="{StaticResource style_mainwindow_grid_sidemenu}" >
-                        <StackPanel x:Name="sp_sidemenu_top" Style="{StaticResource style_mainwindow_sp_sidemenu_top}">
-                            <Button x:Name="btn_index" Style="{DynamicResource style_mainwindow_button_index_sidemenu}" Tag=""  Click="btn_index_Click"></Button>
-                            <Button x:Name="btn_gamesLink" Style="{DynamicResource style_mainwindow_button_second_sidemenu}" Tag="" Click="btn_gamesLink_Click"></Button>
-                            <Button x:Name="btn_three" Style="{DynamicResource style_mainwindow_button_third_sidemenu}" Tag="" Click="btn_three_Click"></Button>
-                            <Button x:Name="btn_seven" Style="{DynamicResource style_mainwindow_button_seventh_sidemenu}" Tag="" Click="btn_seven_Click"></Button>
-                            <Button x:Name="btn_four" Style="{DynamicResource style_mainwindow_button_fourth_sidemenu}" Tag="" Click="btn_four_Click"></Button>
-                            <Button x:Name="btn_eight" Style="{DynamicResource style_mainwindow_button_eighth_sidemenu}" Tag="" Click="btn_eight_Click"></Button>
-                        </StackPanel>
-                        <StackPanel x:Name="sp_sidemenu_bottom" Style="{StaticResource style_mainwindow_sp_sidemenu_bottom}">
-                            <Button x:Name="btn_five" Style="{DynamicResource style_mainwindow_button_fifth_sidemenu}" Tag="" Click="btn_five_Click"></Button>
-                            <Button x:Name="btn_six" Style="{DynamicResource style_mainwindow_button_sixth_sidemenu}" Tag="" Click="btn_six_Click"></Button>
-                        </StackPanel>
-                    </Grid>
-                    <Grid x:Name="grid_rightmenu"  Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"></RowDefinition>
-                            <RowDefinition Height="*"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid x:Name="grid_topright" Margin="10,10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                                <ColumnDefinition Width="3*"></ColumnDefinition>
-                                <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="1*"></RowDefinition>
-                                <RowDefinition Height="5*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <!--<StackPanel Grid.Column="0" Grid.Row="0">
-                                <Border BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1" Opacity="0.27" Background="{DynamicResource color_search_border_bg}" VerticalAlignment="Center" CornerRadius="15">
-                                    <StackPanel Margin="5"  Orientation="Horizontal" VerticalAlignment="Center">
-                                        <TextBox x:Name="txtsearchgame" MinWidth="315" Height="25" Background="{DynamicResource color_search_border_bg}" Foreground="White" Margin="3 6 0 0" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="0" FontSize="16" ></TextBox>
-                                        <Image Source="images/img-search.png"  Height="18" Opacity="10" HorizontalAlignment="Right"/>
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>-->
-                            <!--<StackPanel x:Name="sp_fliter" Grid.Column="1" Grid.Row="0" Orientation="Horizontal" >
-                                <Image Source="images/sliders 1.png"  Width="25" HorizontalAlignment="Left" Margin="20,0,0,0"></Image>
-                                <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"  FontSize="18" VerticalAlignment="Center">Filter</TextBlock>
-                            </StackPanel>-->
-                            <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                                <Border CornerRadius="16" Width="32" Height="32" HorizontalAlignment="Left" Margin="20,0,0,0">
-                                    <Border.Background>
-                                        <ImageBrush Stretch="Fill" ImageSource="images/user-log.png"/>
-                                    </Border.Background>
-                                </Border>
-                                <TextBlock x:Name="txtUserName" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="17">Gabe L. Newell</TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Image Source="images/symbol-dollar.png"  Width="10" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
-                                    <TextBlock x:Name="txtAmount" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">320</TextBlock>
-                                </StackPanel>
-                                <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Image Source="images/symbol-special-currency.png"  Width="15" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
-                                    <TextBlock x:Name="txtBalPoints" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">320</TextBlock>
-                                </StackPanel>
-                                <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Image Source="images/clock.png"  Width="15" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
-                                    <TextBlock x:Name="txtHours" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">5:30 HRs</TextBlock>
-                                </StackPanel>
-                                <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Image Source="images/bell.png"  Width="25" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
-                                    <TextBlock x:Name="txtUrcount" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">1</TextBlock>
-                                </StackPanel>
-                            </StackPanel>
-                            <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
-                                <Border x:Name="btnLogout" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource color_btn_logout_bg_border}" Background="{DynamicResource color_btn_logout_bg_border}" Width="150" Height="30" PreviewMouseDown="btnLogout_PreviewMouseDown">
-                                    <StackPanel Orientation="Horizontal" Margin="5">
-                                        <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="20,0,0,0" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Log Out</TextBlock>
-                                        <Image Source="images/logOut.png"  Width="15" HorizontalAlignment="Right" Margin="40,0,0,0"></Image>
-                                    </StackPanel>
-                                </Border>
-                            </StackPanel>
-                            <!--<StackPanel x:Name="sp_fliter_items" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,15,0,0" Visibility="Collapsed">
-                                    <WrapPanel Orientation="Horizontal" Width="650" Height="160" Name="wp_fliter_items"></WrapPanel>
-                                </StackPanel>-->
-                        </Grid>
-
-
-                        <Grid x:Name="grid_bottomright" Grid.Row="1">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"></RowDefinition>
-                            </Grid.RowDefinitions>
-
-                            <Grid x:Name="grid_userslist" Grid.Column="0">
-                                <Grid.ColumnDefinitions></Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-
-                                <StackPanel>
-                                    <TextBlock Grid.Row="0" Foreground="White" FontSize="20" FontFamily="Proxima Nova" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Left" >Top Players</TextBlock>
-                                    <TextBlock Height="1" Background="#D8D8D8" Margin="0 0 0 20" HorizontalAlignment="Left" Width="320" ></TextBlock>
-                                </StackPanel>
-
-                                <Border Width="320" Grid.Row="1" Margin="0 0 0 20" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
-                                        Opacity="0.27" Background="#1F262F" VerticalAlignment="Center" CornerRadius="4">
-                                    <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                                        <Image Source="images/img-search.png"  Width="20" Height="18" Opacity="10" HorizontalAlignment="Left"/>
-                                        <Grid >
-                                            <TextBlock  FontFamily="Proxima Nova" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3 6 0 0" Height="25" Text="Search for a hero"
-                                                        Foreground="White" FontSize="14">
-                                                <TextBlock.Visibility>
-                                                    <MultiBinding Converter="{StaticResource TextInputToVisibilityConverter}">
-                                                        <Binding ElementName="txtsearchgame" Path="Text" />
-                                                        <Binding ElementName="txtsearchgame" Path="IsFocused" />
-                                                    </MultiBinding>
-                                                </TextBlock.Visibility>
-                                            </TextBlock>
-                                            <TextBox Background="Transparent"
-                                                     Name="txtsearchgame" FontFamily="Proxima Nova"  Height="25" Foreground="White" Margin="3 6 0 0" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="0"
-                                                     FontSize="14" TextChanged="txtsearchgame_TextChanged" />
-                                        </Grid>
-                                    </StackPanel>
-                                </Border>
-
-                                <ListBox Background="#18191C" BorderBrush="{DynamicResource color_bg_mainmenu}" Grid.Row="2" Name="lbUsers" >
-                                    <ListBox.ItemContainerStyle>
-                                        <Style TargetType="ListBoxItem">
-                                            <Style.Triggers>
-                                                <Trigger Property="IsSelected" Value="True" >
-                                                    <Setter Property="FontWeight" Value="Bold" />
-                                                    <Setter Property="Background" Value="Black" />                                                    
-                                                </Trigger>
-                                            </Style.Triggers>
-                                            <Style.Resources>
-                                                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="Transparent"/>
-                                            </Style.Resources>
-                                        </Style>
-                                    </ListBox.ItemContainerStyle>
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>                                         
-                                            <Border CornerRadius="4" VerticalAlignment="Stretch" Margin="0 0 0 3" HorizontalAlignment="Stretch" >
-                                                <Border.Background>
-                                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                                                        <LinearGradientBrush.GradientStops>
-                                                            <GradientStop Color="#222933 " Offset="0"></GradientStop>
-                                                            <GradientStop Color="#0F1217 " Offset="0.4"></GradientStop>                                                      
-                                                        </LinearGradientBrush.GradientStops>
-                                                    </LinearGradientBrush>
-                                                </Border.Background>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"></RowDefinition>
-                                                        <RowDefinition Height="Auto"></RowDefinition>
-                                                        <RowDefinition Height="Auto"></RowDefinition>
-                                                    </Grid.RowDefinitions>
-                                                    <Image Source="{Binding UserImage}" Stretch="Fill" Width="70"  Grid.Row="0" Grid.Column="0" Height="70"></Image>
-                                                    <Grid Grid.Column="1" Grid.Row="0" Margin="10 0 0 0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="105"></ColumnDefinition>
-                                                            <ColumnDefinition Width="95"></ColumnDefinition>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="Auto"></RowDefinition>
-                                                            <RowDefinition Height="Auto"></RowDefinition>
-                                                            <RowDefinition Height="Auto"></RowDefinition>
-                                                            <RowDefinition Height="Auto"></RowDefinition>
-                                                        </Grid.RowDefinitions>
-                                                        <TextBlock Margin="0,2" Grid.Row="0" Grid.ColumnSpan="2" Text="{Binding UserName}" Foreground="{DynamicResource color_username}" FontSize="15"  FontFamily="Open Sans"></TextBlock>
-                                                        <TextBlock Margin="0,2" Grid.Row="1" Grid.Column="0" Text="Center Ranking" Foreground="{StaticResource color_gamename}" FontSize="10"></TextBlock>
-                                                        <TextBlock Margin="0,2" Grid.Row="1" Grid.Column="1" Text="LoyaltyPoints" Foreground="{StaticResource color_gamename}" FontSize="10" ></TextBlock>
-                                                        <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="0" Text="{Binding CenterRanking}" Foreground="{DynamicResource color_username}" FontSize="10" FontWeight="Bold"></TextBlock>
-                                                        <TextBlock Margin="0,2" Grid.Row="2" Grid.Column="1" Text="{Binding LoyaltyPoints}" Foreground="{DynamicResource color_username}" FontSize="10" FontWeight="Bold"></TextBlock>
-                                                        <Border Margin="0,2" Grid.Row="3" Grid.Column="0" Height="2" Width="50" Background="Red" HorizontalAlignment="Left"></Border>
-                                                        <Border Margin="0,2" Grid.Row="3" Grid.Column="1" Height="2" Width="30" Background="Yellow" HorizontalAlignment="Left"></Border>
-                                                    </Grid>
-                                                </Grid>
-                                                <Border.Effect>
-                                                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" Opacity=".9"></DropShadowEffect>
-                                                </Border.Effect>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-                            </Grid>
-
-
-
-                            <Grid x:Name="grid_gameList" Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                               
-                                <StackPanel Orientation="Horizontal">
-                                    <ComboBox Name="cbGames" Width="150" HorizontalAlignment="Left" SelectionChanged="cbGames_SelectionChanged"  Style = "{DynamicResource ComboBoxFlatStyle}" ></ComboBox>
-                                    <ComboBox Name="cbRegions" Width="150" HorizontalAlignment="Left" Margin="5 0 0 0" SelectionChanged="cbRegions_SelectionChanged" Style = "{DynamicResource ComboBoxFlatStyle}"  ></ComboBox>
-                                </StackPanel>
-
-                                <Grid x:Name="grid_bannerGrid" Margin="10, 0, 0, 0" Height="300"  Grid.Row="1"  >
-                                    <Grid.Background>
-                                        <ImageBrush Stretch="Fill" />
-                                    </Grid.Background>
-                                    <Border Height="225" Width="500" Margin="20, 10, 0, 0"  HorizontalAlignment="Left" VerticalAlignment="Top">
-                                        <Border.Background>
-                                            <LinearGradientBrush EndPoint="0.5,0.9" StartPoint="0.5,0">                                               
-                                                <GradientStop Color="#12151C" Offset="1.12"/>
-                                                <GradientStop Color="#212732"/>
-                                            </LinearGradientBrush>
-                                        </Border.Background>
-                                        <Grid Margin="10,10,0, 0">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="*"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                
-                                                <Grid Grid.ColumnSpan="3"  Margin="5,5,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image Width="60" Name="PlayerImage" Source="images/user.png"></Image> 
-                                                    <StackPanel Orientation="Vertical" Margin="5 5 0 0" Grid.Column="1">
-                                                        <TextBlock Name="PlayerName"  FontSize="26" Foreground="WhiteSmoke" FontWeight="Bold" ></TextBlock>
-                                                        <TextBlock Name="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0 2"  ></TextBlock>
-                                                    </StackPanel>
-                                                    <Border Grid.Column="2" Height="3" Width="3" Margin="5,20,0,0" Background="WhiteSmoke" VerticalAlignment="Top"  ></Border>
-                                                    <TextBlock Grid.Column="3" Name="Points" Margin="10,10,0,0" FontSize="18" Foreground="WhiteSmoke"  ></TextBlock>
-
-                                                    <!--<Path x:Name="gameLogo" Width="230" Height="80" HorizontalAlignment="Right" Margin="50,0,10,0" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Fill="White">
-                                                        <Path.Data>
-                                                            <PathGeometry Figures="M0 26.3332C0 40.8195 0.0358275 52.6665 0.0835976 52.6665C0.155253 52.6665 9.8884 50.8632 11.0827 50.6243L11.7037 50.5049V31.17H19.108V29.4025C19.108 28.4351 19.1439 25.9153 19.1916 23.7895L19.2633 19.944H11.7037V11.4648H16.0627C18.4631 11.4648 20.4217 11.4409 20.4217 11.4051C20.4217 11.2737 21.3771 1.07483 21.4368 0.561298L21.5085 0H0V26.3332ZM178.636 1.54058L169.106 2.32879V49.9078L169.5 49.9675C169.846 50.0272 188.298 51.3648 188.668 51.3528C188.775 51.3528 188.811 50.0869 188.811 45.4413V39.5297H180.69V30.9311H187.617V20.6606H180.451V13.8533L180.726 13.8055C180.869 13.7697 182.088 13.722 183.437 13.6742C184.787 13.6384 186.542 13.5786 187.354 13.5309L188.811 13.4592V0.716551L188.489 0.728493C188.298 0.740436 183.867 1.09871 178.636 1.54058ZM117.455 3.18865C117.574 4.3829 118.936 22.3803 118.912 22.4042C118.9 22.428 117.144 18.1168 115.006 12.8263C112.881 7.53573 111.089 3.15282 111.042 3.06923C110.97 2.93786 107.674 3.54693 102.264 4.69341L101.75 4.80089V45.8593H112.379L112.319 44.9994C112.2 43.3991 111.758 30.1668 111.806 29.6413C111.842 29.1756 112.2 29.9877 115.592 38.1802C117.646 43.1603 119.389 47.2804 119.437 47.3521C119.509 47.4237 121.169 47.3162 123.987 47.0774C126.435 46.8624 128.442 46.6714 128.442 46.6594C128.454 46.6475 128.394 38.0369 128.31 27.5275C128.227 17.0181 128.155 7.09385 128.155 5.45773L128.143 2.50793H117.383L117.455 3.18865ZM33.3793 3.23642C26.2377 3.71412 22.3086 8.59861 21.0666 18.5109C20.8158 20.565 20.7083 27.5394 20.8875 29.9757C21.4846 37.8817 23.6223 43.0169 27.42 45.6324C29.4622 47.0296 32.5314 47.782 35.5648 47.6029C39.0162 47.4118 41.3689 46.4325 43.4827 44.3187C45.2144 42.587 46.1578 40.9628 47.0655 38.1922C48.3314 34.3228 48.9046 28.5426 48.618 22.5236C48.2955 15.788 47.2804 11.5962 45.1905 8.38365C43.1961 5.32636 40.0433 3.49916 36.365 3.27225C35.7798 3.23642 35.1588 3.20059 34.9916 3.17671C34.8244 3.16477 34.1078 3.18865 33.3793 3.23642ZM35.0632 12.6232C35.935 13.5667 36.3052 17.3286 36.3052 25.3778C36.3052 35.2901 35.6842 39.4103 34.3228 38.5266C33.7376 38.1325 33.2957 36.2097 33.0808 33.0211C32.9255 30.6923 32.9255 20.0276 33.0808 17.7943C33.3077 14.6415 33.7137 12.8979 34.3228 12.4799C34.6572 12.2411 34.7169 12.253 35.0632 12.6232ZM50.1586 24.9479V46.6952H61.1099L61.1815 45.1785C61.2293 44.3306 61.3248 41.5838 61.3965 39.052C61.4681 36.5202 61.5637 34.2989 61.6114 34.1198C61.6712 33.869 62.1847 35.4812 63.7611 40.927C64.9076 44.8561 65.8749 48.1164 65.9227 48.1642C66.0182 48.2716 77.2203 47.3879 77.3397 47.2685C77.3756 47.2207 76.1335 43.3155 74.581 38.5624L71.7626 29.9399L72.3597 29.4144C74.3422 27.6828 75.9783 24.3388 76.444 21.0308C76.6471 19.5857 76.5157 16.003 76.2052 14.6774C75.0109 9.48236 71.8462 5.44579 67.8096 3.94103C66.0541 3.29613 66.1974 3.30808 57.8973 3.26031L50.1586 3.21254V24.9479ZM62.4713 13.507C63.3192 13.925 64.0119 14.9998 64.3821 16.4807C64.6329 17.4719 64.5971 20.6128 64.3224 21.616C63.8089 23.5029 62.9012 24.6016 61.5398 25.0196L61.2651 25.0912V13.1368L61.6592 13.2204C61.8622 13.2562 62.2324 13.3876 62.4713 13.507ZM76.7904 8.89717V14.4504H82.8811V46.4564H94.3459V16.3612H100.556V5.25471L100.293 5.20694C100.042 5.14722 77.2681 3.33196 76.9456 3.3439C76.8262 3.3439 76.7904 4.53816 76.7904 8.89717ZM130.651 26.2138V47.8895H142.474V4.53816H130.651V26.2138ZM155.969 6.04291C149.496 6.38925 144.11 6.67587 144.003 6.67587C143.8 6.68781 143.788 7.03414 143.788 12.3008V17.9138H149.879V49.3226H161.463V16.6001H167.912V10.9871C167.912 7.894 167.876 5.38607 167.828 5.38607C167.768 5.39802 162.442 5.68464 155.969 6.04291Z" 
-                                                                          FillRule="NonZero"/>
-                                                        </Path.Data>
-                                                    </Path>-->
-
-                                                    <Image Opacity="1" Grid.Column="4" HorizontalAlignment="Right" x:Name="gameLogo"   Height="70" Width="180" Margin="30,0,10,0" VerticalAlignment="Top">                                                        
-                                                    </Image>
-                                                </Grid>                                                
-                                                
-                                            </Grid>
-                                            
-                                            <Grid x:Name="bannerGrid"  Grid.Row="1" Margin="0,10,0,0">                                                
-                                            </Grid>
-                                            
-                                        </Grid>
-                                    </Border>
-                                </Grid>
-
-                                <!--<StackPanel Grid.Row="2" Margin="30,10,0,5" Orientation="Horizontal">         
-                                    
-                                <TextBlock >
-                                    <Hyperlink Foreground="#58FFFF" >
-                                        All
-                                    </Hyperlink>
-                                </TextBlock>
-                                    <TextBlock Margin="10 0 0 0">
-                                    <Hyperlink Foreground="#58FFFF" TextDecorations="none" Click="">
-                                        Solo
-                                    </Hyperlink>
-                                </TextBlock>
-                                    
-                                </StackPanel>-->
-                                
-                                <!--<TabControl Grid.Row="2" Name="tabGameMode" TabStripPlacement="Top" Background="LightGray" BorderBrush="Blue" Margin="30,10,0,5">
-                                    <TabControl.Resources>
-                                        <Style TargetType="TabItem">
-                                            <Setter Property="Template">
-                                                <Setter.Value>
-                                                    <ControlTemplate TargetType="TabItem">
-                                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
-                                                            <ContentPresenter x:Name="ContentSite"
-                                                            VerticalAlignment="Center"
-                                                            HorizontalAlignment="Center"
-                                                            ContentSource="Header"
-                                                            Margin="10,2"/>     
-                                                        </Border>
-                                                        <ControlTemplate.Triggers>
-                                                            <Trigger Property="IsSelected" Value="True">
-                                                                <Setter TargetName="Border" Property="Background" Value="LightSkyBlue" />
-                                                            </Trigger>
-                                                            <Trigger Property="IsSelected" Value="False">
-                                                                <Setter TargetName="Border" Property="Background" Value="GhostWhite" />
-                                                            </Trigger>
-                                                        </ControlTemplate.Triggers>
-                                                    </ControlTemplate>
-                                                </Setter.Value>
-                                            </Setter>
-                                        </Style>
-                                    </TabControl.Resources>
-                                </TabControl>-->
-
-
-                                <Grid x:Name="grid_gamedetails"  Grid.Row="3"  Margin="30,10,0,5">
-                                    <DataGrid Background="{DynamicResource color_bg_mainmenu}" GridLinesVisibility="None" x:Name="dg" AutoGenerateColumns="False" RowHeight="50" BorderThickness="0" 
-                                              CanUserSortColumns="False" CanUserAddRows="False" SelectionChanged="dg_SelectionChanged" Foreground="WhiteSmoke" HeadersVisibility="Column">
-                                       
-                                    </DataGrid>
-                                   
-                                </Grid>
-                            </Grid>
-                            
-                        </Grid>
-                    </Grid>                  
+        <Border Background="#18191C">
+            <Grid x:Name="grid_main" Style="{StaticResource style_mainwindow_grid_grid_main}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="16*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="grid_sidemenu" Style="{StaticResource style_mainwindow_grid_sidemenu}" >
+                    <StackPanel x:Name="sp_sidemenu_top" Style="{StaticResource style_mainwindow_sp_sidemenu_top}">
+                        <Button x:Name="btn_index" Style="{DynamicResource style_mainwindow_button_index_sidemenu}" Tag=""  Click="btn_index_Click"></Button>
+                        <Button x:Name="btn_gamesLink" Style="{DynamicResource style_mainwindow_button_second_sidemenu}" Tag="" Click="btn_gamesLink_Click"></Button>
+                        <Button x:Name="btn_three" Style="{DynamicResource style_mainwindow_button_third_sidemenu}" Tag="" Click="btn_three_Click"></Button>
+                        <Button x:Name="btn_seven" Style="{DynamicResource style_mainwindow_button_seventh_sidemenu}" Tag="" Click="btn_seven_Click"></Button>
+                        <Button x:Name="btn_four" Style="{DynamicResource style_mainwindow_button_fourth_sidemenu}" Tag="" Click="btn_four_Click"></Button>
+                        <Button x:Name="btn_eight" Style="{DynamicResource style_mainwindow_button_eighth_sidemenu}" Tag="" Click="btn_eight_Click"></Button>
+                    </StackPanel>
+                    <StackPanel x:Name="sp_sidemenu_bottom" Style="{StaticResource style_mainwindow_sp_sidemenu_bottom}">
+                        <Button x:Name="btn_five" Style="{DynamicResource style_mainwindow_button_fifth_sidemenu}" Tag="" Click="btn_five_Click"></Button>
+                        <Button x:Name="btn_six" Style="{DynamicResource style_mainwindow_button_sixth_sidemenu}" Tag="" Click="btn_six_Click"></Button>
+                    </StackPanel>
                 </Grid>
-            </Border>
-        </Grid>
+                <Grid x:Name="grid_rightmenu"  Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="grid_topright" Margin="10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <!--<StackPanel Grid.Column="0" Grid.Row="0">
+                            <Border BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1" Opacity="0.27" Background="{DynamicResource color_search_border_bg}" VerticalAlignment="Center" CornerRadius="15">
+                                <StackPanel Margin="5"  Orientation="Horizontal" VerticalAlignment="Center">
+                                    <TextBox x:Name="txtsearchgame" MinWidth="315" Height="25" Background="{DynamicResource color_search_border_bg}" Foreground="White" Margin="3 6 0 0" BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="0" FontSize="16" ></TextBox>
+                                    <Image Source="images/img-search.png"  Height="18" Opacity="10" HorizontalAlignment="Right"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>-->
+                        <!--<StackPanel x:Name="sp_fliter" Grid.Column="1" Grid.Row="0" Orientation="Horizontal" >
+                            <Image Source="images/sliders 1.png"  Width="25" HorizontalAlignment="Left" Margin="20,0,0,0"></Image>
+                            <TextBlock Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0"  FontSize="18" VerticalAlignment="Center">Filter</TextBlock>
+                        </StackPanel>-->
+                        <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+                            <Border CornerRadius="16" Width="32" Height="32" HorizontalAlignment="Left" Margin="20,0,0,0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="images/user-log.png"/>
+                                </Border.Background>
+                            </Border>
+                            <TextBlock x:Name="txtUserName" Foreground="White" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" FontSize="17">Gabe L. Newell</TextBlock>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal" Margin="10,0,0,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="images/symbol-dollar.png"  Width="10" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
+                                <TextBlock x:Name="txtAmount" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">320</TextBlock>
+                            </StackPanel>
+                            <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="images/symbol-special-currency.png"  Width="15" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
+                                <TextBlock x:Name="txtBalPoints" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">320</TextBlock>
+                            </StackPanel>
+                            <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="images/clock.png"  Width="15" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
+                                <TextBlock x:Name="txtHours" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">5:30 HRs</TextBlock>
+                            </StackPanel>
+                            <Separator  Margin="10,0" Height="15" Opacity=".4" Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Image Source="images/bell.png"  Width="25" HorizontalAlignment="Center" Margin="0,0,0,0"></Image>
+                                <TextBlock x:Name="txtUrcount" Foreground="White" HorizontalAlignment="Center" Margin="2,0,0,0" VerticalAlignment="Center" FontSize="17">1</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
+                            <Border x:Name="btnLogout" CornerRadius="5" BorderThickness="1" BorderBrush="{DynamicResource color_btn_logout_bg_border}" Background="{DynamicResource color_btn_logout_bg_border}" Width="150" Height="30" PreviewMouseDown="btnLogout_PreviewMouseDown">
+                                <StackPanel Orientation="Horizontal" Margin="5">
+                                    <TextBlock Foreground="White" HorizontalAlignment="Center" Margin="20,0,0,0" VerticalAlignment="Center" FontSize="14" FontWeight="Bold">Log Out</TextBlock>
+                                    <Image Source="images/logOut.png"  Width="15" HorizontalAlignment="Right" Margin="40,0,0,0"></Image>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <!--<StackPanel x:Name="sp_fliter_items" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,15,0,0" Visibility="Collapsed">
+                                <WrapPanel Orientation="Horizontal" Width="650" Height="160" Name="wp_fliter_items"></WrapPanel>
+                            </StackPanel>-->
+                    </Grid>
+
+
+                    <Grid Grid.Row="1">
+                        <ContentControl Content="{Binding LoadedObject}"></ContentControl>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
 
