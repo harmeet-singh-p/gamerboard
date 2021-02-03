@@ -76,12 +76,12 @@ namespace GameProj
         public HomeViewModel()
         {          
 
-            var fileArray = Directory.GetFiles(@".\images\slideshow\", "*.png");
+            var fileArray = Directory.GetFiles(@".\images\slideshow\");
             ImageArray = fileArray.Select(x => new ImageDetail { FileName = x, IsLoaded = false }).ToList();
 
             LoadNextAdv = new CommandHandler(btnNext_Click);
             LoadPrevAdv = new CommandHandler(btnPrevious_Click);
-            SeeMoreNews = new CommandHandler(btnTopLeftSeeMore_Click);
+            SeeMoreNews = new CommandHandler(btnSeeMore_Click);
 
             PlaySlideShow(ctr);
             LoadNews(1, 5);
@@ -96,27 +96,21 @@ namespace GameProj
             NewsVM = dataAccess.LoadNews(from, to).ToList();
         }
 
-        private void btnTopLeftSeeMore_Click()
+        private void btnSeeMore_Click()
         {
             LoadNews(5, 10);
         }
 
 
         private void PlaySlideShow(int ctr)
-        {
-            //BitmapImage image = new BitmapImage();
-            //image.BeginInit();
+        {           
             var item = ImageArray.ElementAt(ctr - 1);
             foreach (var im in ImageArray)
             {
                 im.IsLoaded = false;
             }
-            item.IsLoaded = true;
-            //image.UriSource = new Uri(item.FileName, UriKind.Relative);
-
-            //image.EndInit();
-            ImagePath = item.FileName;
-            //myImage.Stretch = Stretch.Uniform;
+            item.IsLoaded = true;          
+            ImagePath = item.FileName;            
         }
 
         private void btnPrevious_Click()

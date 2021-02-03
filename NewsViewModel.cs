@@ -9,7 +9,7 @@
         public string HTML { get; set; }
 
         public string PostBy { get; set; }
-
-
+        
+        public string PostDt { get; set; }
     }
 }

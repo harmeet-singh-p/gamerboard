@@ -79,7 +79,8 @@ namespace GameProj
 
                     newsVM.NewsText = Convert.ToString(sqlReader.GetString(2));
                     newsVM.HTML = Convert.ToString(sqlReader.GetString(3));
-                    newsVM.PostBy = Convert.ToString(sqlReader.GetString(4));
+                    newsVM.PostBy = Convert.ToString("Posted by " + sqlReader.GetString(4));
+                    newsVM.PostDt = Convert.ToString(", on " + Convert.ToDateTime(sqlReader.GetString(5)).ToString("dd/MM/yyyy"));
                     resultList.Add(newsVM);
                 }
             }
