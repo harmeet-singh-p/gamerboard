@@ -59,6 +59,7 @@
     <Compile Include="BannerControl.xaml.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="BindedTableInfo.cs" />
+    <Compile Include="ChallengeModel.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
@@ -187,6 +188,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\bell.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\cod.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\csgo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\dota2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\FORTNITE.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\pubg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\CHALLENGEIMAGES\valorant1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\clock.png">

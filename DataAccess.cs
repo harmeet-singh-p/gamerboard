@@ -17,8 +17,6 @@ namespace GameProj
         //@"Server=www.leaserp.com;Database=devtemp;User Id=devtemp;Password=an?bc2+6; Integrated Security =false;";
         string directory;
 
-
-
         public DataAccess()
         {
             ConnectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
@@ -44,6 +42,45 @@ namespace GameProj
                     bindedTableInfo.ColShowIn = sqlReader.GetString(3);
                     bindedTableInfo.DetPos = sqlReader.GetString(4);
                     resultList.Add(bindedTableInfo);
+                }
+            }
+            return resultList;
+        }
+
+        public IList<ChallengeModel> GetChallenges(string gameCode, int fromCount, int toCount)
+        {
+            var resultList = new List<ChallengeModel>();
+            var con = new SqlConnection(ConnectionString);
+            con.Open();
+            var command = new SqlCommand("select* from[dbo].[f_get_challenges] (@gamecode, @pi_frcount, @pi_tocount)", con);
+            command.Parameters.AddWithValue("@gamecode", gameCode);
+            command.Parameters.AddWithValue("@pi_frcount", fromCount);
+            command.Parameters.AddWithValue("@pi_tocount", toCount);
+            using (var sqlReader = command.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    var challengeMode = new ChallengeModel();
+                    challengeMode.GameCode = sqlReader.GetString(1);
+                    challengeMode.GameName = sqlReader.GetString(2);
+                    challengeMode.ChallengeCode = sqlReader.GetString(3);
+                    challengeMode.ChallengeName = sqlReader.GetString(4);
+                    challengeMode.ChallengeType = sqlReader.GetString(5);
+                    challengeMode.ChallengeDetail = sqlReader.GetString(6);
+                    challengeMode.ChallengeRem = sqlReader.GetString(7);
+                    challengeMode.ImageFile = "\\images\\CHALLENGEIMAGES\\" + sqlReader.GetString(8);
+                    challengeMode.ChallengeStartDate = sqlReader.GetString(9);
+                    challengeMode.ChallengeStartTime = sqlReader.GetString(10);
+                    challengeMode.ChallengeEndDate = sqlReader.GetString(11);
+                    challengeMode.ChallengeEndTime = sqlReader.GetString(12);
+                    challengeMode.FeePts = sqlReader.GetInt32(13);
+                    challengeMode.FeeAmt = sqlReader.GetDecimal(14);
+                    challengeMode.RewardPts = sqlReader.GetInt32(15);
+                    challengeMode.RewardAmt = sqlReader.GetDecimal(16);
+                    challengeMode.CreatedBy = sqlReader.GetString(17);
+
+                    
+                    resultList.Add(challengeMode);
                 }
             }
             return resultList;

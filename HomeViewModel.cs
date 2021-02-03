@@ -20,8 +20,11 @@ namespace GameProj
 {
     public class HomeViewModel : BaseViewModel
     {
+        DataAccess dataAccess;
 
         private List<NewsViewModel> _newsVM;
+
+        private IList<ChallengeModel> _challengeModel;
 
         public  List<NewsViewModel> NewsVM
         {
@@ -32,6 +35,19 @@ namespace GameProj
             {
                 _newsVM = value;
                 OnPropertyRaised("NewsVM");
+            }
+        }
+
+        public IList<ChallengeModel> Challenges
+        {
+            get
+            {
+                return _challengeModel;
+            }
+            set
+            {
+                _challengeModel = value;
+                OnPropertyRaised("Challenges");
             }
         }
 
@@ -74,8 +90,8 @@ namespace GameProj
         }
 
         public HomeViewModel()
-        {          
-
+        {
+            dataAccess = new DataAccess();
             var fileArray = Directory.GetFiles(@".\images\slideshow\");
             ImageArray = fileArray.Select(x => new ImageDetail { FileName = x, IsLoaded = false }).ToList();
 
@@ -85,14 +101,17 @@ namespace GameProj
 
             PlaySlideShow(ctr);
             LoadNews(1, 5);
-
+            LoadChallenges(1, 5);
            // lbNews.ItemsSource = newsVM;
         }
 
+        private void LoadChallenges(int from, int to)
+        {
+            Challenges = dataAccess.GetChallenges("0170", 1, 5);
+        }
 
         private void LoadNews(int from, int to)
-        {
-            DataAccess dataAccess = new DataAccess();
+        {            
             NewsVM = dataAccess.LoadNews(from, to).ToList();
         }
 
