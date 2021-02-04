@@ -5,9 +5,9 @@
     <DataTemplate DataType="{x:Type local:HomeViewModel}">
         <Grid Name="MainGrid" Margin="30" Background="{StaticResource color_bg_maingrid}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="1.8*"></ColumnDefinition>
+                <ColumnDefinition Width="*" ></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>                
@@ -15,8 +15,8 @@
 
             <Grid  x:Name="Left" >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="400"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="1.6*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Margin="0 0 0 30" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}">
                     <Grid x:Name="TopLeft" >
@@ -32,10 +32,10 @@
                         <TextBlock Grid.Row="0"  Margin="15 0 0 0" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Left">Recent News</TextBlock>
 
                         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" x:Name="btnTopLeftSeeMore" VerticalAlignment="Center"
-                           Style="{DynamicResource style_mainwindow_seemore}" Command="{Binding SeeMoreNews}" ></Button>
+                           Style="{DynamicResource style_mainwindow_seemore}" Command="{Binding SeeMoreNews}" Visibility="{Binding IsSeeMoreNews}" ></Button>
                         <!--Click="btnTopLeftSeeMore_Click"-->
 
-                        <ListBox ItemsSource="{Binding NewsVM}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1"
+                        <ListBox ItemsSource="{Binding NewsVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1"
                              Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" 
                                 BorderBrush="{DynamicResource color_bg_mainmenu}" Name="lbNews" >
 
@@ -64,7 +64,7 @@
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"></RowDefinition>
                                         </Grid.RowDefinitions>
-                                        <Border BorderBrush="{StaticResource color_search_border_bg}" Grid.Column="0" Width="70" Height="75" CornerRadius="8">
+                                        <Border BorderBrush="{StaticResource color_search_border_bg}" Grid.Column="0" Width="60" Height="65" CornerRadius="8">
                                             <Border.Background>
                                                 <ImageBrush Stretch="Fill" ImageSource="{Binding NewsImage}"/>
                                             </Border.Background>
@@ -72,10 +72,10 @@
 
                                         <Grid Grid.Column="1" Margin="10 0 0 0">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="2*"></RowDefinition>
+                                                <RowDefinition Height="*"></RowDefinition>
                                             </Grid.RowDefinitions>
-                                            <TextBlock Width="250" TextTrimming="CharacterEllipsis" Margin="0,2,0,5" Grid.Row="0" Text="{Binding NewsText}" Foreground="{DynamicResource color_username}" FontSize="14"  FontFamily="Helvetica"></TextBlock>
+                                            <TextBlock Width="Auto" TextWrapping="Wrap" Margin="0,2,0,5" Grid.Row="0" Text="{Binding NewsText}" Foreground="{DynamicResource color_username}" FontSize="14"  FontFamily="Helvetica"></TextBlock>
                                             <StackPanel Orientation="Horizontal" Grid.Row="1">
                                             <TextBlock Margin="0,2" HorizontalAlignment="Left"  Text="{Binding PostBy}" Foreground="{DynamicResource color_gamename}" FontSize="12"  FontFamily="Helvetica"></TextBlock>
                                             <TextBlock Margin="0,2" HorizontalAlignment="Right"  Text="{Binding PostDt}" Foreground="{DynamicResource color_gamename}" FontSize="12"  FontFamily="Helvetica"></TextBlock>
@@ -110,7 +110,7 @@
                            Style="{DynamicResource style_mainwindow_seemore}" Visibility="{Binding IsSeeMoreMPG}" Command="{Binding SeeMoreMPGames}" ></Button>
                             <!--Click="btnTopLeftSeeMore_Click"-->
 
-                            <ListBox  ItemsSource="{Binding MPGamesVM}" ScrollViewer.VerticalScrollBarVisibility="Auto"
+                            <ListBox  ItemsSource="{Binding MPGamesVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
                                Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" 
                                 BorderBrush="{DynamicResource color_bg_mainmenu}" Name="lbMostPlayedGames" >
@@ -190,12 +190,12 @@
 
             <Grid Grid.Row="0" Grid.Column="1" Margin="30 0 30 0"  x:Name="Middle"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="1.2*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Margin="0 0 0 30" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}" >
                     <Grid x:Name="TopMiddle" >
-                        <Image Stretch="Fill" Source="{Binding ImagePath}"  Height="300" />
+                        <Image Stretch="Fill" Source="{Binding ImagePath}"  />
                         <Button Name="btnPrevious" Style="{StaticResource style_mainwindow_button_Left_banner_navigate}" Command="{Binding LoadPrevAdv}" />
                         <!--Content="&lt;" Click="btnPrevious_Click"-->
                         <Button Name="btnNext"  Style="{StaticResource style_mainwindow_button_Right_banner_navigate}"  Command="{Binding LoadNextAdv}" />

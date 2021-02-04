@@ -213,7 +213,7 @@ namespace GameProj
         private void btnSeeMoreNews_Click()
         {
             //fromNews += 5;
-            toNews += 5;
+            toNews += 6;
 
             LoadNews(fromNews,toNews);
 
