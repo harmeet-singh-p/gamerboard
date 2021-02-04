@@ -21,7 +21,7 @@ namespace GameProj
         {
             ConnectionString = ConfigurationManager.AppSettings["ConnectionString"].ToString();
             directory = Path.GetDirectoryName(Application.ResourceAssembly.Location);
-            directory += "\\images\\news\\";
+           // directory += "\\images\\news\\";
         }
 
         public IList<BindedTableInfo> GetTableInfos(string gamecode)
@@ -88,10 +88,8 @@ namespace GameProj
 
         internal IList<NewsViewModel> LoadNews(int pi_frcount, int pi_tocount)
         {
-           
-            // DO NOT DELETE COMMENTED CODE
-
             var resultList = new List<NewsViewModel>();
+            var newsImagePath = directory + "\\images\\news\\";
             var con = new SqlConnection(ConnectionString);
             con.Open();
             var command = new SqlCommand("select * from [dbo].[f_get_newsitems](@pi_frcount,@pi_tocount)", con);
@@ -105,19 +103,24 @@ namespace GameProj
 
                     string newsImage = sqlReader.GetString(1);                  
 
-                    if (File.Exists(directory + newsImage))
+                    if (File.Exists(newsImagePath + newsImage))
                     {
-                        newsVM.NewsImage = directory + newsImage;
+                        newsVM.NewsImage = newsImagePath + newsImage;
                     }
                     else
                     {
-                        newsVM.NewsImage = directory + "news1.png";
+                        newsVM.NewsImage = newsImagePath + "news1.png";
                     }
 
                     newsVM.NewsText = Convert.ToString(sqlReader.GetString(2));
                     newsVM.HTML = Convert.ToString(sqlReader.GetString(3));
                     newsVM.PostBy = Convert.ToString("Posted by " + sqlReader.GetString(4));
-                    newsVM.PostDt = Convert.ToString(", on " + Convert.ToDateTime(sqlReader.GetString(5)).ToString("dd/MM/yyyy"));
+
+                    DateTime dt;
+                    DateTime.TryParse(sqlReader.GetString(5), out dt);
+                    
+                    newsVM.PostDt = ", on " + dt.ToString("dd/MM/yyyy");
+                                        
                     resultList.Add(newsVM);
                 }
             }
@@ -154,6 +157,49 @@ namespace GameProj
                     userViewModel.LoyaltyPoints = Convert.ToString(sqlReader.GetInt32(3));
                     userViewModel.CenterRanking = Convert.ToString(sqlReader.GetInt64(4));
                     resultList.Add(userViewModel);
+                }
+            }
+            return resultList;
+        }
+
+        internal IList<MPGViewModel> LoadMPGames(string ps_categories, string ps_searchstr , string ps_listopt, int pi_frcount, int pi_tocount)
+        {
+            var resultList = new List<MPGViewModel>();
+            var gamesImagePath = directory + "\\images\\games\\";
+            var con = new SqlConnection(ConnectionString);
+            con.Open();
+            var command = new SqlCommand("select * from [dbo].[f_get_gamelist](@ps_categories, @ps_searchstr, @ps_listopt, @pi_frcount, @pi_tocount)", con);
+            command.Parameters.AddWithValue("@ps_categories", ps_categories);
+            command.Parameters.AddWithValue("@ps_searchstr", ps_searchstr);
+            command.Parameters.AddWithValue("@ps_listopt", ps_listopt);
+            command.Parameters.AddWithValue("@pi_frcount", pi_frcount);
+            command.Parameters.AddWithValue("@pi_tocount", pi_tocount);
+            
+            using (var sqlReader = command.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    var mPGamesVM = new MPGViewModel();
+                     
+                    string gamesImage =  sqlReader.GetString(4).Replace("C:\\GAMESIMAGES\\", "");
+
+                    if (File.Exists(gamesImagePath + gamesImage))
+                    {
+                        mPGamesVM.MPGImage = gamesImagePath + gamesImage;
+                    }
+                    else
+                    {
+                        mPGamesVM.MPGImage = gamesImagePath + "c5.jpg";
+                    }
+
+                    mPGamesVM.MPGCode = Convert.ToString(sqlReader.GetString(1));
+                    mPGamesVM.MPGName = Convert.ToString(sqlReader.GetString(2));
+                    //mPGamesVM.MPGRating = Convert.ToString(sqlReader.GetString(5));
+                    //mPGamesVM.MPGLaunchyr = Convert.ToString(sqlReader.GetString(6));
+                    //mPGamesVM.MPGShortcut = Convert.ToString(sqlReader.GetString(7));
+                    //mPGamesVM.MPGAgeRating = Convert.ToString(sqlReader.GetString(8));
+
+                    resultList.Add(mPGamesVM);
                 }
             }
             return resultList;

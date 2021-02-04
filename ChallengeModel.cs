@@ -43,5 +43,47 @@ namespace GameProj
         public decimal RewardAmt { get; set; }
 
         public string CreatedBy { get; set; }
+
+        public string ChallengeFee 
+        { 
+            get 
+            {
+                string resultString = string.Empty;
+                if(FeePts > 0)
+                {
+                    resultString = FeePts.ToString();
+                }
+                if(FeeAmt > 0 && !string.IsNullOrEmpty(resultString))
+                {
+                    resultString += " - ";
+                }
+                if (FeeAmt > 0)
+                {
+                    resultString += FeeAmt.ToString() + "LP";
+                }
+                return resultString;
+            }
+        }
+
+        public string ChallengeReward
+        {
+            get
+            {
+                string resultString = string.Empty;
+                if (RewardPts > 0)
+                {
+                    resultString = RewardPts.ToString();
+                }
+                if (RewardAmt > 0 && !string.IsNullOrEmpty(resultString))
+                {
+                    resultString += " - ";
+                }
+                if (RewardAmt > 0)
+                {
+                    resultString += RewardAmt.ToString() + "LP";
+                }
+                return resultString;
+            }
+        }
     }
 }

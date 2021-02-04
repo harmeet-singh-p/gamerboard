@@ -24,7 +24,7 @@ namespace GameProj
 
         private List<NewsViewModel> _newsVM;
 
-        private IList<ChallengeModel> _challengeModel;
+        private IList<ChallengeModel> _challenges;
 
         public  List<NewsViewModel> NewsVM
         {
@@ -42,12 +42,27 @@ namespace GameProj
         {
             get
             {
-                return _challengeModel;
+                return _challenges;
             }
             set
             {
-                _challengeModel = value;
+                _challenges = value;
                 OnPropertyRaised("Challenges");
+            }
+        }
+
+        private List<MPGViewModel> _mPGamesVM;
+
+        public List<MPGViewModel> MPGamesVM
+        {
+            get
+            {
+                return _mPGamesVM;
+            }
+            set
+            {
+                _mPGamesVM = value;
+                OnPropertyRaised("MPGamesVM");
             }
         }
 
@@ -72,9 +87,59 @@ namespace GameProj
 
         public ICommand SeeMoreNews { get; set; }
 
+        public ICommand SeeMoreMPGames { get; set; }
+        public ICommand SeeMoreChallenges { get; set; }
+
+        private Visibility _isSeeMoreNews;
+        public Visibility IsSeeMoreNews {
+            get
+            {
+                return _isSeeMoreNews;
+            }
+            set
+            {
+                _isSeeMoreNews = value;
+                OnPropertyRaised("IsSeeMoreNews");
+            }
+        }
+
+        private Visibility _isSeeMoreChallenges;
+
+        public Visibility IsSeeMoreChallenges
+        {
+            get
+            {
+                return _isSeeMoreChallenges;
+            }
+            set
+            {
+                _isSeeMoreChallenges = value;
+                OnPropertyRaised("IsSeeMoreChallenges");
+            }
+        }
+
+        private Visibility _isSeeMoreMPG;
+        public Visibility IsSeeMoreMPG {
+            get
+            {
+                return _isSeeMoreMPG;
+            }
+            set
+            {
+                _isSeeMoreMPG = value;
+                OnPropertyRaised("IsSeeMoreMPG");
+            }
+        }
+
 
         int ctr = 1;
-       
+
+        int fromNews;
+        int toNews;
+        int fromMPG;
+        int toMPG;
+        int fromChallenges;
+        int toChallenges;
         private List<ImageDetail> _imageArray;
 
         public List<ImageDetail> ImageArray { 
@@ -97,17 +162,34 @@ namespace GameProj
 
             LoadNextAdv = new CommandHandler(btnNext_Click);
             LoadPrevAdv = new CommandHandler(btnPrevious_Click);
-            SeeMoreNews = new CommandHandler(btnSeeMore_Click);
+            SeeMoreNews = new CommandHandler(btnSeeMoreNews_Click);
+            SeeMoreMPGames = new CommandHandler(btnSeeMoreMPGames_Click);
+            SeeMoreChallenges = new CommandHandler(btnSeeMoreChallenges_Click);
+            fromNews = 1;
+            toNews = 5;
+
+            fromMPG = 1;
+            toMPG = 6;
+
+            fromChallenges = 1;
+            toChallenges = 5;
 
             PlaySlideShow(ctr);
-            LoadNews(1, 5);
-            LoadChallenges(1, 5);
-           // lbNews.ItemsSource = newsVM;
+            LoadNews(fromNews ,toNews);
+            LoadMPG(fromMPG, toMPG);
+            LoadChallenges();
+            IsSeeMoreChallenges = Visibility.Visible;
+            // lbNews.ItemsSource = newsVM;
         }
 
-        private void LoadChallenges(int from, int to)
+        private void LoadChallenges()
         {
-            Challenges = dataAccess.GetChallenges("0170", 1, 5);
+            Challenges = dataAccess.GetChallenges("0170", fromChallenges, toChallenges);
+        }
+
+        private void LoadMPG(int fromMPG, int toMPG)
+        {
+            MPGamesVM = dataAccess.LoadMPGames("","", "MPLAY", fromMPG, toMPG).ToList();
         }
 
         private void LoadNews(int from, int to)
@@ -115,9 +197,43 @@ namespace GameProj
             NewsVM = dataAccess.LoadNews(from, to).ToList();
         }
 
-        private void btnSeeMore_Click()
+        private void btnSeeMoreMPGames_Click()
         {
-            LoadNews(5, 10);
+            //fromMPG += 6;
+            toMPG += 6;
+
+            LoadMPG(fromMPG, toMPG);
+
+            if (MPGamesVM.Count < toMPG)
+            {
+                IsSeeMoreMPG = Visibility.Hidden;
+            }
+        }
+
+        private void btnSeeMoreNews_Click()
+        {
+            //fromNews += 5;
+            toNews += 5;
+
+            LoadNews(fromNews,toNews);
+
+            if (NewsVM.Count < toNews)
+            {
+                IsSeeMoreNews = Visibility.Hidden;
+            }            
+        }
+
+        private void btnSeeMoreChallenges_Click()
+        {
+            //fromNews += 5;
+            toChallenges += 5;
+
+            LoadChallenges();
+
+            if (Challenges.Count < toChallenges)
+            {
+                IsSeeMoreChallenges = Visibility.Collapsed;
+            }
         }
 
 
