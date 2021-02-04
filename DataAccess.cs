@@ -86,6 +86,41 @@ namespace GameProj
             return resultList;
         }
 
+        public IList<ChallengeModel> GetUpcomingChallenges(int fromCount, int toCount)
+        {
+            var resultList = new List<ChallengeModel>();
+            var con = new SqlConnection(ConnectionString);
+            con.Open();
+            var command = new SqlCommand("select* from[dbo].[f_get_tournaments] (@pi_frcount, @pi_tocount)", con);
+            command.Parameters.AddWithValue("@pi_frcount", fromCount);
+            command.Parameters.AddWithValue("@pi_tocount", toCount);
+            using (var sqlReader = command.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    var challengeMode = new ChallengeModel();
+                    challengeMode.GameCode = sqlReader.GetString(1);
+                    challengeMode.GameName = sqlReader.GetString(2);
+                    challengeMode.ImageFile = "\\images\\TOURNAMENTIMAGES\\" + sqlReader.GetString(3);
+                    challengeMode.ChallengeCode = sqlReader.GetString(4);
+                    challengeMode.ChallengeName = sqlReader.GetString(5);
+                    challengeMode.ChallengeStartDate = sqlReader.GetString(6);
+                    challengeMode.ChallengeStartTime = sqlReader.GetString(7);
+                    challengeMode.ChallengeEndDate = sqlReader.GetString(8);
+                    challengeMode.ChallengeEndTime = sqlReader.GetString(9);
+                    challengeMode.FeePts = sqlReader.GetInt32(10);
+                    challengeMode.FeeAmt = sqlReader.GetDecimal(11);
+                    challengeMode.RewardPts = sqlReader.GetInt32(12);
+                    challengeMode.RewardAmt = sqlReader.GetDecimal(13);
+                    challengeMode.CreatedBy = sqlReader.GetString(14);
+
+
+                    resultList.Add(challengeMode);
+                }
+            }
+            return resultList;
+        }
+
         internal IList<NewsViewModel> LoadNews(int pi_frcount, int pi_tocount)
         {
             var resultList = new List<NewsViewModel>();

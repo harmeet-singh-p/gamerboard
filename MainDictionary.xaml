@@ -787,6 +787,26 @@
         <Setter Property="Margin" Value="0 0 10 0" ></Setter>
     </Style>
 
+
+    <Style x:Key="style_mainwindow_viewmore" TargetType="{x:Type Button}">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <TextBlock Foreground="{StaticResource color_seemore}" Margin="5 2 0 0"
+                                   Text="View More" TextDecorations="Underline" x:Name="category_filter_btn_textblock" ></TextBlock>
+                        <TextBlock FontSize="16" Foreground="#FE005D" Margin="0 0 0 0" Text="&#x2794;"></TextBlock>
+                    </StackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Foreground" Value="#FFFFFF"></Setter>
+        <Setter Property="Background" Value="{StaticResource color_bg_smallgrid}"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="FontSize" Value="13"></Setter>
+        <Setter Property="Margin" Value="0 0 10 0" ></Setter>
+    </Style>
+
     <Style x:Key="style_mainwindow_seemorechallenges" TargetType="{x:Type Button}">
         <Setter Property="Control.Template">
             <Setter.Value>

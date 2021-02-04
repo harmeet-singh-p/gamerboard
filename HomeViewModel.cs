@@ -26,6 +26,8 @@ namespace GameProj
 
         private IList<ChallengeModel> _challenges;
 
+        private IList<ChallengeModel> _tournaments;
+
         public  List<NewsViewModel> NewsVM
         {
             get { 
@@ -51,6 +53,18 @@ namespace GameProj
             }
         }
 
+        public IList<ChallengeModel> Tournaments
+        {
+            get
+            {
+                return _tournaments;
+            }
+            set
+            {
+                _tournaments = value;
+                OnPropertyRaised("Tournaments");
+            }
+        }
         private List<MPGViewModel> _mPGamesVM;
 
         public List<MPGViewModel> MPGamesVM
@@ -90,6 +104,8 @@ namespace GameProj
         public ICommand SeeMoreMPGames { get; set; }
         public ICommand SeeMoreChallenges { get; set; }
 
+        public ICommand SeeMoreTournaments { get; set; }
+
         private Visibility _isSeeMoreNews;
         public Visibility IsSeeMoreNews {
             get
@@ -104,6 +120,7 @@ namespace GameProj
         }
 
         private Visibility _isSeeMoreChallenges;
+        private Visibility _isSeeMoreTournaments;
 
         public Visibility IsSeeMoreChallenges
         {
@@ -115,6 +132,19 @@ namespace GameProj
             {
                 _isSeeMoreChallenges = value;
                 OnPropertyRaised("IsSeeMoreChallenges");
+            }
+        }
+
+        public Visibility IsSeeMoreTournaments
+        {
+            get
+            {
+                return _isSeeMoreTournaments;
+            }
+            set
+            {
+                _isSeeMoreTournaments = value;
+                OnPropertyRaised("IsSeeMoreTournaments");
             }
         }
 
@@ -140,6 +170,8 @@ namespace GameProj
         int toMPG;
         int fromChallenges;
         int toChallenges;
+        int fromTournamnes;
+        int toTournamnes;
         private List<ImageDetail> _imageArray;
 
         public List<ImageDetail> ImageArray { 
@@ -165,6 +197,7 @@ namespace GameProj
             SeeMoreNews = new CommandHandler(btnSeeMoreNews_Click);
             SeeMoreMPGames = new CommandHandler(btnSeeMoreMPGames_Click);
             SeeMoreChallenges = new CommandHandler(btnSeeMoreChallenges_Click);
+            SeeMoreTournaments = new CommandHandler(btnSeeMoreTournaments_Click);
             fromNews = 1;
             toNews = 5;
 
@@ -173,18 +206,27 @@ namespace GameProj
 
             fromChallenges = 1;
             toChallenges = 5;
+            fromTournamnes = 1;
+            toTournamnes = 5;
 
             PlaySlideShow(ctr);
             LoadNews(fromNews ,toNews);
             LoadMPG(fromMPG, toMPG);
             LoadChallenges();
+            LoadTournaments();
             IsSeeMoreChallenges = Visibility.Visible;
+            IsSeeMoreTournaments = Visibility.Visible;
             // lbNews.ItemsSource = newsVM;
         }
 
         private void LoadChallenges()
         {
             Challenges = dataAccess.GetChallenges("0170", fromChallenges, toChallenges);
+        }
+
+        private void LoadTournaments()
+        {
+            Tournaments = dataAccess.GetUpcomingChallenges(fromTournamnes, toTournamnes);
         }
 
         private void LoadMPG(int fromMPG, int toMPG)
@@ -236,6 +278,18 @@ namespace GameProj
             }
         }
 
+        private void btnSeeMoreTournaments_Click()
+        {
+            //fromNews += 5;
+            toTournamnes += 5;
+
+            LoadTournaments();
+
+            if (Tournaments.Count < toTournamnes)
+            {
+                IsSeeMoreTournaments = Visibility.Collapsed;
+            }
+        }
 
         private void PlaySlideShow(int ctr)
         {           

@@ -488,6 +488,27 @@
     <Content Include="images\symbol-special-currency.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\TOURNAMENTIMAGES\cod.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\csgo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\dota2.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\FORTNITE.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\pubg.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\valorant.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\TOURNAMENTIMAGES\valorant1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\tournaments.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
