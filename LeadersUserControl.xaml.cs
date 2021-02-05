@@ -305,6 +305,7 @@ namespace GameProj
                             DataGridTemplateColumn txtBlockColumn = new DataGridTemplateColumn();
                             txtBlockColumn.Header = item.ColDesc;
                             txtBlockColumn.MinWidth = 50;
+                            txtBlockColumn.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
                             txtBlockColumn.IsReadOnly = true;
                             if (item.ColDesc == "Rank" || item.ColDesc == "Player Name" || item.ColDesc == "Center Name")
                             {
