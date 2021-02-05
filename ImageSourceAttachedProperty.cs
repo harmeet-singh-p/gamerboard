@@ -25,10 +25,11 @@ namespace GameProj
 
         private static void OnSourceChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
         {
-            var svgControl = obj as Image;
-            if (svgControl != null)
+            var svgControl = obj as ImageBrush;
+            var path = (string)e.NewValue;
+            if (svgControl != null && !string.IsNullOrEmpty(path))
             {
-                var path = (string)e.NewValue;
+                
                 WpfDrawingSettings settings = new WpfDrawingSettings();
                 settings.IncludeRuntime = true;
                 settings.TextAsGeometry = false;
@@ -43,7 +44,7 @@ namespace GameProj
 
                 if (drawing != null)
                 {
-                    svgControl.Source = new DrawingImage(drawing);
+                    svgControl.ImageSource = new DrawingImage(drawing);
                 }
             }
         }

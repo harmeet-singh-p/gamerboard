@@ -27,14 +27,15 @@
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <TextBlock Grid.Row="0" Foreground="White" FontSize="20" FontFamily="Proxima Nova" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Left" >Top Players</TextBlock>
+                <TextBlock Grid.Row="0" Foreground="White" FontSize="20" FontFamily="Proxima Nova" FontWeight="Bold" Margin="0 0 0 20"
+                           HorizontalAlignment="Left" >Top Players</TextBlock>
                 <TextBlock Height="1" Background="#D8D8D8" Margin="0 0 0 20" HorizontalAlignment="Left" Width="320" ></TextBlock>
             </StackPanel>
 
             <Border Width="320" Grid.Row="1" Margin="0 0 0 20" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
                                     Opacity="0.27" Background="#1F262F" VerticalAlignment="Center" CornerRadius="4">
                 <StackPanel   Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <Image Source="images/img-search.png"  Width="20" Height="18" Opacity="10" HorizontalAlignment="Left"/>
+                    <Image Source="images/img-search.png"  Width="20" Height="20" HorizontalAlignment="Left"/>
                     <Grid >
                         <TextBlock  FontFamily="Proxima Nova" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="3 6 0 0" Height="25" Text="Search for a hero"
                                                     Foreground="White" FontSize="14">

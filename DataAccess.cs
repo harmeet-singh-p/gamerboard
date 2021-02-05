@@ -200,7 +200,7 @@ namespace GameProj
         internal List<FavoritesViewModel> LoadFavorites(string usercode, string friendname, int pi_frcount, int pi_tocount)
         {
             var resultList = new List<FavoritesViewModel>();
-            var favImagePath = directory + "\\images\\games\\";
+            var favImagePath = directory + "\\images\\users\\";
             var con = new SqlConnection(ConnectionString);
             con.Open();
             var command = new SqlCommand("select * from [dbo].[f_get_friendslist](@usercode, @friendname, @pi_frcount, @pi_tocount)", con);
@@ -223,7 +223,7 @@ namespace GameProj
                     }
                     else
                     {
-                        favVM.Userimg = favImagePath + "c5.jpg";
+                        favVM.Userimg = favImagePath + "jon.svg";
                     }
 
                     favVM.UserCode = Convert.ToString(sqlReader.GetString(1));

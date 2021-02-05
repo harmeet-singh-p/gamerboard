@@ -1,26 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.IO;
-using Path = System.IO.Path;
 using System.Windows.Threading;
+using System.Configuration;
 
 namespace GameProj
 {
     public class HomeViewModel : BaseViewModel
     {
+        private string UserCode = ConfigurationManager.AppSettings["UserCode"].ToString();
+        private string GameCode = ConfigurationManager.AppSettings["GameCode"].ToString();
+
         DispatcherTimer timer;
         DataAccess dataAccess;
 
@@ -211,6 +204,21 @@ namespace GameProj
             }
         }
 
+        private FavoritesViewModel _selectedFriend;
+        public FavoritesViewModel SelectedFriend
+        {
+            get
+            {
+                return _selectedFriend;
+            }
+            set
+            {
+                _selectedFriend = value;
+                OnPropertyRaised("SelectedFriend");
+            }
+        }
+
+
 
         int ctr = 1;
 
@@ -313,7 +321,7 @@ namespace GameProj
 
         private void LoadChallenges()
         {
-            Challenges = dataAccess.GetChallenges("0170", fromChallenges, toChallenges);
+            Challenges = dataAccess.GetChallenges(GameCode, fromChallenges, toChallenges);
         }
 
         private void LoadTournaments()
@@ -323,7 +331,7 @@ namespace GameProj
 
         private void LoadFavorites(int fromFav, int toFav)
         {
-            FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);             
+            FavoritesVM = dataAccess.LoadFavorites(UserCode, "", fromFav, toFav);             
         }
 
         private void txtsearchfriends_TextChanged()
