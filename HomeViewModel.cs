@@ -28,12 +28,13 @@ namespace GameProj
 
         private IList<ChallengeModel> _tournaments;
 
-        public  List<NewsViewModel> NewsVM
+        public List<NewsViewModel> NewsVM
         {
-            get { 
+            get
+            {
                 return _newsVM;
             }
-            set 
+            set
             {
                 _newsVM = value;
                 OnPropertyRaised("NewsVM");
@@ -80,6 +81,21 @@ namespace GameProj
             }
         }
 
+        private List<FavoritesViewModel> _favoritesVM;
+
+        public List<FavoritesViewModel> FavoritesVM
+        {
+            get
+            {
+                return _favoritesVM;
+            }
+            set
+            {
+                _favoritesVM = value;
+                OnPropertyRaised("FavoritesVM");
+            }
+        }
+
         private string _imagePath;
 
         public string ImagePath
@@ -105,9 +121,12 @@ namespace GameProj
         public ICommand SeeMoreChallenges { get; set; }
 
         public ICommand SeeMoreTournaments { get; set; }
+        public ICommand SeeMoreFavorites { get; set; }
+        public ICommand FilterFavorites { get; set; }
 
         private Visibility _isSeeMoreNews;
-        public Visibility IsSeeMoreNews {
+        public Visibility IsSeeMoreNews
+        {
             get
             {
                 return _isSeeMoreNews;
@@ -116,6 +135,20 @@ namespace GameProj
             {
                 _isSeeMoreNews = value;
                 OnPropertyRaised("IsSeeMoreNews");
+            }
+        }
+
+        private Visibility _isSeeMoreFavorites;
+        public Visibility IsSeeMoreFavorites
+        {
+            get
+            {
+                return _isSeeMoreFavorites;
+            }
+            set
+            {
+                _isSeeMoreFavorites = value;
+                OnPropertyRaised("IsSeeMoreFavorites");
             }
         }
 
@@ -149,7 +182,8 @@ namespace GameProj
         }
 
         private Visibility _isSeeMoreMPG;
-        public Visibility IsSeeMoreMPG {
+        public Visibility IsSeeMoreMPG
+        {
             get
             {
                 return _isSeeMoreMPG;
@@ -172,9 +206,13 @@ namespace GameProj
         int toChallenges;
         int fromTournamnes;
         int toTournamnes;
+        int fromFav;
+        int toFav;
+
         private List<ImageDetail> _imageArray;
 
-        public List<ImageDetail> ImageArray { 
+        public List<ImageDetail> ImageArray
+        {
             get
             {
                 return _imageArray;
@@ -194,15 +232,23 @@ namespace GameProj
 
             LoadNextAdv = new CommandHandler(btnNext_Click);
             LoadPrevAdv = new CommandHandler(btnPrevious_Click);
+
             SeeMoreNews = new CommandHandler(btnSeeMoreNews_Click);
             SeeMoreMPGames = new CommandHandler(btnSeeMoreMPGames_Click);
             SeeMoreChallenges = new CommandHandler(btnSeeMoreChallenges_Click);
             SeeMoreTournaments = new CommandHandler(btnSeeMoreTournaments_Click);
+            SeeMoreFavorites = new CommandHandler(btnSeeMoreFavorites_Click);
+            FilterFavorites = new CommandHandler(btnSeeMoreFavorites_Click);
+
+
             fromNews = 1;
             toNews = 5;
 
             fromMPG = 1;
             toMPG = 6;
+
+            fromFav = 1;
+            toFav = 15;
 
             fromChallenges = 1;
             toChallenges = 5;
@@ -210,8 +256,9 @@ namespace GameProj
             toTournamnes = 5;
 
             PlaySlideShow(ctr);
-            LoadNews(fromNews ,toNews);
+            LoadNews(fromNews, toNews);
             LoadMPG(fromMPG, toMPG);
+            LoadFavorites(fromFav, toFav);
             LoadChallenges();
             LoadTournaments();
             IsSeeMoreChallenges = Visibility.Visible;
@@ -229,14 +276,32 @@ namespace GameProj
             Tournaments = dataAccess.GetUpcomingChallenges(fromTournamnes, toTournamnes);
         }
 
+        private void LoadFavorites(int fromFav, int toFav)
+        {
+            FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);
+        }
+
         private void LoadMPG(int fromMPG, int toMPG)
         {
-            MPGamesVM = dataAccess.LoadMPGames("","", "MPLAY", fromMPG, toMPG).ToList();
+            MPGamesVM = dataAccess.LoadMPGames("", "", "MPLAY", fromMPG, toMPG).ToList();
         }
 
         private void LoadNews(int from, int to)
-        {            
+        {
             NewsVM = dataAccess.LoadNews(from, to).ToList();
+        }
+
+        private void btnSeeMoreFavorites_Click()
+        {
+            //fromMPG += 6;
+            toFav += 5;
+
+            LoadFavorites(fromFav, toFav);
+
+            if (FavoritesVM.Count < toFav)
+            {
+                IsSeeMoreFavorites = Visibility.Hidden;
+            }
         }
 
         private void btnSeeMoreMPGames_Click()
@@ -257,12 +322,12 @@ namespace GameProj
             //fromNews += 5;
             toNews += 6;
 
-            LoadNews(fromNews,toNews);
+            LoadNews(fromNews, toNews);
 
             if (NewsVM.Count < toNews)
             {
                 IsSeeMoreNews = Visibility.Hidden;
-            }            
+            }
         }
 
         private void btnSeeMoreChallenges_Click()
@@ -292,14 +357,14 @@ namespace GameProj
         }
 
         private void PlaySlideShow(int ctr)
-        {           
+        {
             var item = ImageArray.ElementAt(ctr - 1);
             foreach (var im in ImageArray)
             {
                 im.IsLoaded = false;
             }
-            item.IsLoaded = true;          
-            ImagePath = item.FileName;            
+            item.IsLoaded = true;
+            ImagePath = item.FileName;
         }
 
         private void btnPrevious_Click()
@@ -321,7 +386,36 @@ namespace GameProj
             }
             PlaySlideShow(ctr);
         }
-}
+        private void txtsearchfriends_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var searchBy = (sender as TextBox).Text;
+            FilterFriends(searchBy);
+        }
+
+        private void FilterFriends(string searchBy = null)
+        {
+            try
+            {
+                if (!FavoritesVM.Any())
+                {
+                    FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);
+                }
+
+                FavoritesVM = string.IsNullOrEmpty(searchBy) ? FavoritesVM : FavoritesVM.Where(x => x.UserName.StartsWith(searchBy, StringComparison.InvariantCultureIgnoreCase)).ToList();
+                //var favList = new List<FavoritesViewModel>();
+                //foreach (var item in filteredList)
+                //{
+                //    favList.Add(item);
+                //}
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while loading  Users. Error :" + ex.Message);
+                //objcommon.WritErrorLog("Gamelist.xaml", "ErrorLog.txt", ex.StackTrace, Properties.Settings.Default.UserName);
+            }
+        }
+    }
 }
 
 

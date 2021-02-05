@@ -272,32 +272,6 @@ namespace GameProj
             }
         }
 
-        private void HandleEvents(string gameCode, string Region, string gameMode)
-        {
-            var list = dataAccess.GetTableData(gameCode, cbRegions.SelectedValue == null ? "" : cbRegions.SelectedValue.ToString(), gameMode);
-            if (list.Count > 0)
-            {
-                InitializeBannerGrid(list.First());
-                InitializeTableGrid(list);
-            }
-            else
-            {
-                dg.ItemsSource = null;
-                dg.Columns.Clear();
-
-                bannerGrid.DataContext = null;
-                bannerGrid.Children.Clear();
-                bannerGrid.RowDefinitions.Clear();
-                bannerGrid.ColumnDefinitions.Clear();
-
-                Points.Text = null;
-                PlayerName.Text = null;
-                Center.Text = null;
-
-                MessageBox.Show("No Data to show for selected value of Game, Region and  Game Mode.");
-            }
-        }
-
         private void InitializeTableGrid(IList<DetailViewModel> tableData)
         {
             dg.ItemsSource = tableData;

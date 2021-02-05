@@ -64,6 +64,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="DetailViewModel.cs" />
+    <Compile Include="FavoritesViewModel.cs" />
     <Compile Include="GamesList.cs" />
     <Compile Include="HomeUserControl.xaml.cs">
       <DependentUpon>HomeUserControl.xaml</DependentUpon>

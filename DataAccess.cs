@@ -197,6 +197,47 @@ namespace GameProj
             return resultList;
         }
 
+        internal List<FavoritesViewModel> LoadFavorites(string usercode, string friendname, int pi_frcount, int pi_tocount)
+        {
+            var resultList = new List<FavoritesViewModel>();
+            var favImagePath = directory + "\\images\\games\\";
+            var con = new SqlConnection(ConnectionString);
+            con.Open();
+            var command = new SqlCommand("select * from [dbo].[f_get_friendslist](@usercode, @friendname, @pi_frcount, @pi_tocount)", con);
+            command.Parameters.AddWithValue("@usercode", usercode);
+            command.Parameters.AddWithValue("@friendname", friendname);
+            command.Parameters.AddWithValue("@pi_frcount", pi_frcount);
+            command.Parameters.AddWithValue("@pi_tocount", pi_tocount);
+
+            using (var sqlReader = command.ExecuteReader())
+            {
+                while (sqlReader.Read())
+                {
+                    var favVM = new FavoritesViewModel();
+
+                    string favImage = sqlReader.GetString(3);
+
+                    if (File.Exists(favImagePath + favImage))
+                    {
+                        favVM.Userimg = favImagePath + favImage;
+                    }
+                    else
+                    {
+                        favVM.Userimg = favImagePath + "c5.jpg";
+                    }
+
+                    favVM.UserCode = Convert.ToString(sqlReader.GetString(1));
+                    favVM.UserName = Convert.ToString(sqlReader.GetString(2));
+                    favVM.Favorite = Convert.ToString(sqlReader.GetString(4));
+                    favVM.Status = Convert.ToString(sqlReader.GetString(5));
+                    favVM.CurrentGame = Convert.ToString(sqlReader.GetString(6));
+
+                    resultList.Add(favVM);
+                }
+            }
+            return resultList;
+        }
+
         internal IList<MPGViewModel> LoadMPGames(string ps_categories, string ps_searchstr , string ps_listopt, int pi_frcount, int pi_tocount)
         {
             var resultList = new List<MPGViewModel>();
