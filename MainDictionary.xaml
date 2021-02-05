@@ -811,7 +811,7 @@
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <TextBlock Foreground="White" Text="See More Challenges" FontSize="15">
+                    <TextBlock TextDecorations="Underline" Foreground="White" Text="See More Challenges" FontSize="15">
                     </TextBlock>
                 </ControlTemplate>
             </Setter.Value>

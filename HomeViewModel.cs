@@ -15,11 +15,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
 using Path = System.IO.Path;
+using System.Windows.Threading;
 
 namespace GameProj
 {
     public class HomeViewModel : BaseViewModel
     {
+        DispatcherTimer timer;
         DataAccess dataAccess;
 
         private List<NewsViewModel> _newsVM;
@@ -254,9 +256,13 @@ namespace GameProj
         }
 
         public HomeViewModel()
-        {
-            dataAccess = new DataAccess();
+        {            
             var fileArray = Directory.GetFiles(@".\images\slideshow\");
+            dataAccess = new DataAccess();
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 2);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.IsEnabled = true;
             ImageArray = fileArray.Select(x => new ImageDetail { FileName = x, IsLoaded = false }).ToList();
 
             LoadNextAdv = new CommandHandler(btnNext_Click);
@@ -293,6 +299,16 @@ namespace GameProj
             IsSeeMoreChallenges = Visibility.Visible;
             IsSeeMoreTournaments = Visibility.Visible;
             // lbNews.ItemsSource = newsVM;
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            ctr++;
+            if (ctr > ImageArray.Count)
+            {
+                ctr = 1;
+            }
+            PlaySlideShow(ctr);
         }
 
         private void LoadChallenges()

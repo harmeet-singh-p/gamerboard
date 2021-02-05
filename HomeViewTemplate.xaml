@@ -1,7 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:GameProj"
-                    xmlns:svgc="http://sharpvectors.codeplex.com/svgc/">
+                    xmlns:local="clr-namespace:GameProj">
 
     <local:SizeCalculater x:Key="SizeCalculater"></local:SizeCalculater>
 
@@ -188,7 +187,7 @@
                 </Grid.RowDefinitions>
                 <Border Margin="0 0 0 30" CornerRadius="5" Background="{StaticResource color_bg_smallgrid}" >
                     <Grid x:Name="TopMiddle" >
-                        <svgc:SvgViewbox  Source="images\users\fill-one.svg"/>
+                        <Image Stretch="Fill" Source="{Binding ImagePath}"  />
                         <Button Name="btnPrevious" Style="{StaticResource style_mainwindow_button_Left_banner_navigate}" Command="{Binding LoadPrevAdv}" />
                         <!--Content="&lt;" Click="btnPrevious_Click"-->
                         <Button Name="btnNext"  Style="{StaticResource style_mainwindow_button_Right_banner_navigate}"  Command="{Binding LoadNextAdv}" />
@@ -252,7 +251,7 @@
                                 </TextBlock>
                             </StackPanel>
                             <ListBox ItemsSource="{Binding Challenges}" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Row="2" HorizontalAlignment="Stretch"
+                                     ScrollViewer.HorizontalScrollBarVisibility="Hidden" Grid.Row="2" HorizontalAlignment="Stretch" BorderThickness="0"
                               Background="{StaticResource color_bg_smallgrid}" 
                                 BorderBrush="{DynamicResource color_bg_mainmenu}" HorizontalContentAlignment="Stretch">
 
@@ -376,27 +375,27 @@
 
             <Grid Grid.Row="0" Grid.Column="2" x:Name="Right"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.6*"></RowDefinition>
+                    <RowDefinition Height=".8*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Border Margin="0 0 0 30" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" >
+                <Border Margin="0 0 0 30" BorderThickness="1" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}" BorderBrush="Red" >
                     <Grid x:Name="TopRight" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40"></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition ></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
                             <ColumnDefinition ></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0" TextWrapping="Wrap"  Margin="15 0 0 0" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Left">My Upcoming Tourrnaments</TextBlock>
+                        <TextBlock Grid.Row="0"  Margin="5 0 0 0" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Stretch">My Upcoming Tourrnaments</TextBlock>
 
                         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center"
                            Style="{DynamicResource style_mainwindow_seemore}" Command="{Binding SeeMoreTournaments}" Visibility="{Binding IsSeeMoreTournaments}" ></Button>
                         <!--Click="btnTopLeftSeeMore_Click"-->
 
-                        <ListBox ItemsSource="{Binding Tournaments}" Margin="5" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1" Grid.ColumnSpan="2"
+                        <ListBox ItemsSource="{Binding Tournaments}" Margin="5" BorderThickness="0" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1" Grid.ColumnSpan="2"
                               Background="{StaticResource color_bg_smallgrid}" 
                                 BorderBrush="{DynamicResource color_bg_mainmenu}" HorizontalContentAlignment="Stretch">
 
@@ -433,7 +432,7 @@
                                         </Border>
                                         <Grid  Grid.Column="1" Margin="30,0,0,0">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
+                                                <RowDefinition Height="30"></RowDefinition>
                                                 <RowDefinition></RowDefinition>
                                                 <RowDefinition></RowDefinition>
                                                 <RowDefinition></RowDefinition>
@@ -455,7 +454,7 @@
 
                                         <Grid  Grid.Column="2" Margin="40,0,0,0">
                                             <Grid.RowDefinitions>
-                                                <RowDefinition ></RowDefinition>
+                                                <RowDefinition Height="30"></RowDefinition>
                                                 <RowDefinition ></RowDefinition>
                                                 <RowDefinition ></RowDefinition>
                                                 <RowDefinition></RowDefinition>
@@ -464,7 +463,7 @@
                                                 <RowDefinition></RowDefinition>
                                             </Grid.RowDefinitions>
                                             <TextBlock Grid.Row="2" Text="Time:" Foreground="{StaticResource color_username}"></TextBlock>
-                                            <TextBlock Grid.Row="3" Text="{Binding ChallengeStartDate}" Foreground="{DynamicResource color_gamename}"></TextBlock>
+                                            <TextBlock Grid.Row="3" Text="{Binding ChallengeStartTime}" Foreground="{DynamicResource color_gamename}"></TextBlock>
                                             <TextBlock Grid.Row="5" Text="Prize:" Foreground="{StaticResource color_username}"></TextBlock>
                                             <TextBlock Grid.Row="6" Text="{Binding ChallengeReward}" Foreground="{DynamicResource color_gamename}"></TextBlock>
                                         </Grid>
