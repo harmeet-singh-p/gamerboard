@@ -78,6 +78,7 @@
     <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="MPGViewModel.cs" />
     <Compile Include="NewsViewModel.cs" />
+    <Compile Include="SizeCalculater.cs" />
     <Compile Include="TextInputToVisibilityConverter.cs" />
     <Compile Include="UserViewModel.cs" />
     <Page Include="BannerControl.xaml">

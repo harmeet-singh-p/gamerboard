@@ -122,7 +122,21 @@ namespace GameProj
 
         public ICommand SeeMoreTournaments { get; set; }
         public ICommand SeeMoreFavorites { get; set; }
-        public ICommand FilterFavorites { get; set; }
+
+
+        private string _searchOnlineUsers;
+        public string SearchOnlineUsers
+        {
+            get { return _searchOnlineUsers; }
+            set
+            {
+                _searchOnlineUsers = value;
+                txtsearchfriends_TextChanged();
+                OnPropertyRaised("SearchOnlineUsers");
+            }
+        }
+
+        
 
         private Visibility _isSeeMoreNews;
         public Visibility IsSeeMoreNews
@@ -223,6 +237,21 @@ namespace GameProj
                 OnPropertyRaised("ImageArray");
             }
         }
+        
+        private string _onlineUserImagePath;
+
+        public string OnlineUserImagePath
+        {
+            get
+            {
+                return _onlineUserImagePath;
+            }
+            set
+            {
+                _onlineUserImagePath = value;
+                OnPropertyRaised("OnlineUserImagePath");
+            }
+        }
 
         public HomeViewModel()
         {
@@ -237,8 +266,7 @@ namespace GameProj
             SeeMoreMPGames = new CommandHandler(btnSeeMoreMPGames_Click);
             SeeMoreChallenges = new CommandHandler(btnSeeMoreChallenges_Click);
             SeeMoreTournaments = new CommandHandler(btnSeeMoreTournaments_Click);
-            SeeMoreFavorites = new CommandHandler(btnSeeMoreFavorites_Click);
-            FilterFavorites = new CommandHandler(btnSeeMoreFavorites_Click);
+            SeeMoreFavorites = new CommandHandler(btnSeeMoreFavorites_Click);            
 
 
             fromNews = 1;
@@ -259,6 +287,7 @@ namespace GameProj
             LoadNews(fromNews, toNews);
             LoadMPG(fromMPG, toMPG);
             LoadFavorites(fromFav, toFav);
+            OnlineUserImagePath = FavoritesVM.First().Userimg;
             LoadChallenges();
             LoadTournaments();
             IsSeeMoreChallenges = Visibility.Visible;
@@ -278,8 +307,30 @@ namespace GameProj
 
         private void LoadFavorites(int fromFav, int toFav)
         {
-            FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);
+            FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);             
         }
+
+        private void txtsearchfriends_TextChanged()
+        {
+            FilterFriends(SearchOnlineUsers);
+        }
+
+       
+        private void FilterFriends(string searchBy = null)
+        {
+            try
+            {
+               
+               FavoritesVM = dataAccess.LoadFavorites("Vinay", searchBy, fromFav, toFav);               
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while loading  Users. Error :" + ex.Message);
+                //objcommon.WritErrorLog("Gamelist.xaml", "ErrorLog.txt", ex.StackTrace, Properties.Settings.Default.UserName);
+            }
+        }
+
 
         private void LoadMPG(int fromMPG, int toMPG)
         {
@@ -386,35 +437,7 @@ namespace GameProj
             }
             PlaySlideShow(ctr);
         }
-        private void txtsearchfriends_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            var searchBy = (sender as TextBox).Text;
-            FilterFriends(searchBy);
-        }
-
-        private void FilterFriends(string searchBy = null)
-        {
-            try
-            {
-                if (!FavoritesVM.Any())
-                {
-                    FavoritesVM = dataAccess.LoadFavorites("Vinay", "", fromFav, toFav);
-                }
-
-                FavoritesVM = string.IsNullOrEmpty(searchBy) ? FavoritesVM : FavoritesVM.Where(x => x.UserName.StartsWith(searchBy, StringComparison.InvariantCultureIgnoreCase)).ToList();
-                //var favList = new List<FavoritesViewModel>();
-                //foreach (var item in filteredList)
-                //{
-                //    favList.Add(item);
-                //}
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error while loading  Users. Error :" + ex.Message);
-                //objcommon.WritErrorLog("Gamelist.xaml", "ErrorLog.txt", ex.StackTrace, Properties.Settings.Default.UserName);
-            }
-        }
+     
     }
 }
 
