@@ -43,7 +43,7 @@
                         <!--Click="btnTopLeftSeeMore_Click"-->
 
                         <ListBox Margin="0 0 5 00" ItemsSource="{Binding NewsVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1"
-                             Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" 
+                             Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" BorderThickness="0"
                                 BorderBrush="{DynamicResource color_bg_mainmenu}" Name="lbNews" HorizontalContentAlignment="Stretch">
 
                             <ListBox.ItemContainerStyle>
