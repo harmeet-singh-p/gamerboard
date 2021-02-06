@@ -311,9 +311,10 @@ namespace GameProj
             // lbNews.ItemsSource = newsVM;
         }
 
-        private void OpenChatWindow_Click()
+        private void OpenChatWindow_Click(object friend)
         {
-            MessageBox.Show("User Selected - " + SelectedFriend.UserName);
+            var innerSelectedFriend = friend as FavoritesViewModel;
+            MessageBox.Show("User Selected - " + innerSelectedFriend.UserName);
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -373,7 +374,7 @@ namespace GameProj
             NewsVM = dataAccess.LoadNews(from, to).ToList();
         }
 
-        private void btnSeeMoreFavorites_Click()
+        private void btnSeeMoreFavorites_Click(object obj)
         {
             //fromMPG += 6;
             toFav += 5;
@@ -386,7 +387,7 @@ namespace GameProj
             }
         }
 
-        private void btnSeeMoreMPGames_Click()
+        private void btnSeeMoreMPGames_Click(object obj)
         {
             //fromMPG += 6;
             toMPG += 6;
@@ -399,7 +400,7 @@ namespace GameProj
             }
         }
 
-        private void btnSeeMoreNews_Click()
+        private void btnSeeMoreNews_Click(object obj)
         {
             //fromNews += 5;
             toNews += 6;
@@ -412,7 +413,7 @@ namespace GameProj
             }
         }
 
-        private void btnSeeMoreChallenges_Click()
+        private void btnSeeMoreChallenges_Click(object obj)
         {
             //fromNews += 5;
             toChallenges += 5;
@@ -425,7 +426,7 @@ namespace GameProj
             }
         }
 
-        private void btnSeeMoreTournaments_Click()
+        private void btnSeeMoreTournaments_Click(object obj)
         {
             //fromNews += 5;
             toTournamnes += 5;
@@ -449,7 +450,7 @@ namespace GameProj
             ImagePath = item.FileName;
         }
 
-        private void btnPrevious_Click()
+        private void btnPrevious_Click(object obj)
         {
             ctr--;
             if (ctr < 1)
@@ -459,7 +460,7 @@ namespace GameProj
             PlaySlideShow(ctr);
         }
 
-        private void btnNext_Click()
+        private void btnNext_Click(object obj)
         {
             ctr++;
             if (ctr > ImageArray.Count)

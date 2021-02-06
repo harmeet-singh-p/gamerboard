@@ -44,7 +44,7 @@
 
                         <ListBox Margin="0 0 5 00" ItemsSource="{Binding NewsVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Hidden"  Grid.Row="1"
                              Grid.ColumnSpan="2" Background="{StaticResource color_bg_smallgrid}" 
-                                BorderBrush="{DynamicResource color_bg_mainmenu}" Name="lbNews" >
+                                BorderBrush="{DynamicResource color_bg_mainmenu}" Name="lbNews" HorizontalContentAlignment="Stretch">
 
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
@@ -610,7 +610,7 @@
                                                 </StackPanel>
 
                                                 <Button Grid.Column="2" Background="Transparent" BorderThickness="0"
-                                                        Command="{Binding OpenChatWindow}">
+                                                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}},Path=DataContext.OpenChatWindow}" CommandParameter="{Binding}">
                                                     <Image Margin="0 0 10 0"  Width="15" Height="15" Source="images\msg-icon.png" ></Image>
                                                 </Button>
                                                
