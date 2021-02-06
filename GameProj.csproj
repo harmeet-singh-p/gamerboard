@@ -460,6 +460,9 @@
     <Content Include="images\messages.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\msg-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="images\news\adidas.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

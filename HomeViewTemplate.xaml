@@ -4,7 +4,9 @@
 
     <local:SizeCalculater x:Key="SizeCalculater"></local:SizeCalculater>
 
-
+    <Style TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Resources/#hk-grotesk.regular-legacy.ttf" />
+    </Style>
 
     <DataTemplate DataType="{x:Type local:HomeViewModel}">
         <Grid Name="MainGrid" Margin="30 0 30 30" Background="{StaticResource color_bg_maingrid}">
@@ -33,7 +35,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.Row="0"  Margin="15 0 0 0" Grid.Column="0" FontSize="16" 
+                        <TextBlock  Grid.Row="0"  Margin="15 0 0 0" Grid.Column="0" FontSize="16" 
 			Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Left">Recent News</TextBlock>
 
                         <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" x:Name="btnTopLeftSeeMore" VerticalAlignment="Center"
@@ -113,7 +115,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Row="0" Margin="15" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Left">Most Played <LineBreak/> Games</TextBlock>
+                            <TextBlock  Grid.Row="0" Margin="15" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Center" HorizontalAlignment="Left">Most Played <LineBreak/> Games</TextBlock>
 
                             <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right"  VerticalAlignment="Center"
                            Style="{DynamicResource style_mainwindow_seemore}" Visibility="{Binding IsSeeMoreMPG}" Command="{Binding SeeMoreMPGames}" ></Button>
@@ -376,7 +378,7 @@
 
             <Grid Grid.Row="0" Grid.Column="2" x:Name="Right"  >
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="1.4*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Border Margin="0 0 0 30" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}"  >
@@ -490,8 +492,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition  Height="65"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>
-                                <RowDefinition Height="Auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>                                
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -512,7 +513,7 @@
                                 <TextBlock Grid.Row="1" Height="2" Background="#141416" Margin="0 0 0 10" ></TextBlock>
                             </Grid>
 
-                            <Border Margin="20 0 0 5" Width="262" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                            <Border Margin="20 0 0 0" Width="262" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                 <StackPanel Margin="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Image Source="images/img-search.png" Margin="5 0 5 0" Width="25" Height="25" HorizontalAlignment="Left"/>
@@ -538,32 +539,12 @@
                                 </StackPanel>
                             </Border>
 
-                            <Grid Margin="25 0 0 0"  Grid.Row="2" x:Name="Favorites">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"></RowDefinition>
-                                    <RowDefinition Height="*"></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock  Grid.Row="0" Grid.Column="0" FontSize="16" Foreground="{StaticResource color_username}" VerticalAlignment="Top"
-                                           HorizontalAlignment="Left">Favorites</TextBlock>
-                                <Button Grid.Row="0" Grid.Column="1" Margin="0 0 20 0" HorizontalAlignment="Right"  VerticalAlignment="Top" Style="{DynamicResource style_mainwindow_seemore}"
-                                        Visibility="{Binding IsSeeMoreFavorites}" Command="{Binding SeeMoreFavorites}" ></Button>
-
-                                <ListBox Margin="0 10 0 0"  Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{Binding FavoritesVM}" ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                     HorizontalAlignment="Stretch" VerticalAlignment="Top" ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
+                                <ListBox  Margin="0 0 0 0"  Grid.Row="2" ItemsSource="{Binding FavoritesVM}" 
+                                         ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                     HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"  
                                      Background="{StaticResource color_bg_smallgrid}" BorderThickness="0" BorderBrush="{DynamicResource color_bg_mainmenu}" SelectedItem="{Binding  SelectedFriend}"
                                      Name="lbFavoriteFriends" >
-
-                                    <ListBox.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <UniformGrid Columns="5" IsItemsHost="True" />
-                                        </ItemsPanelTemplate>
-                                    </ListBox.ItemsPanel>
-
+                                
                                     <ListBox.ItemContainerStyle>
                                         <Style TargetType="ListBoxItem">
                                             <Style.Triggers>
@@ -580,16 +561,23 @@
 
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid>
-                                                <Border Background="Transparent">
-                                                    <Ellipse  Margin="0 10 5 5" Height="35" Width="35" >
-                                                        <Ellipse.Fill>
-                                                            <ImageBrush Stretch="Fill" local:ImageSourceAttachedProperty.SvgSource="{Binding  Userimg}"  />
-                                                        </Ellipse.Fill>
-                                                    </Ellipse>
-                                                </Border>
-                                                <Border Margin="5"  Background="Transparent">
-                                                    <Ellipse HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="10" Width="10">
+
+                                        <Border Width="262" Margin="15 0 0 5"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                                   HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
+                                               
+                                                <Grid >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Border Margin="10 0 0 0" BorderBrush="{StaticResource color_search_border_bg}"  Width="30"
+                                                            Height="30" CornerRadius="5">
+                                                        <Border.Background>
+                                                            <ImageBrush Stretch="Fill" local:ImageSourceAttachedProperty.SvgSource="{Binding Userimg}" />
+                                                  
+                                                        </Border.Background>
+                                                    <Ellipse Margin="0 10" Height="5" Width="5">
                                                         <Ellipse.Style>
                                                             <Style TargetType="{x:Type Ellipse}">
                                                                 <Setter Property="Fill" Value="Transparent" />
@@ -602,81 +590,56 @@
                                                         </Ellipse.Style>
                                                     </Ellipse>
                                                 </Border>
-                                            </Grid>
-
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
-
-                            </Grid>
-
-                            <Border Margin="25 10 0 10" Width="275" Grid.Row="3" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
-                                <Border.Style>
-                                    <Style TargetType="Border" >
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding SelectedFriend}" Value="{x:Null}">
-                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Border.Style>
-                                <Grid Margin="25 0 0 0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-
-                                    <Ellipse Grid.Column="0" Height="35" Width="35">
-                                        <Ellipse.Fill>
-                                            <ImageBrush Stretch="Fill" local:ImageSourceAttachedProperty.SvgSource="{Binding  SelectedFriend.Userimg}"  />
-                                        </Ellipse.Fill>
-                                    </Ellipse>
-
-                                    <StackPanel Grid.Column="1" Margin="5 5 5 5" Orientation="Vertical">
-                                        <TextBlock FontSize="16" FontWeight="Bold" Margin="10 0 0 0" Foreground="{StaticResource color_username}" VerticalAlignment="Center"
-                                           HorizontalAlignment="Left" Text="{Binding SelectedFriend.UserName}"></TextBlock>
-                                        <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="#4E505B" VerticalAlignment="Center"
+                                               
+                                                    <StackPanel Grid.Column="1" Margin="5 5 5 5" Orientation="Vertical">
+                                                        <TextBlock FontSize="16" FontWeight="Bold" Margin="10 0 0 0" Foreground="{StaticResource color_username}" VerticalAlignment="Center"
+                                           HorizontalAlignment="Left" Text="{Binding UserName}"></TextBlock>
+                                                        <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="#4E505B" VerticalAlignment="Center"
                                            HorizontalAlignment="Left">
                                             <Run Text="Playing Now : " ></Run>
-                                            <Run Text="{Binding SelectedFriend.CurrentGame}" ></Run>
-                                        </TextBlock>
-                                    </StackPanel>
+                                            <Run Text="{Binding CurrentGame}" ></Run>
+                                                        </TextBlock>
+                                                    </StackPanel>
 
-                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top"
+                                                <Button Grid.Column="2" Background="Transparent" BorderThickness="0" Command="{Binding OpenChatWindow}">
+                                                    <Image Margin="0 0 10 0"  Width="15" Height="15" Source="images\msg-icon.png" ></Image>
+                                                </Button>
+                                                    
+                                                <!--<StackPanel  Orientation="Horizontal" VerticalAlignment="Top"
                                            HorizontalAlignment="Right">
-                                        <Ellipse Margin="0 10" Height="5" Width="5">
-                                            <Ellipse.Style>
-                                                <Style TargetType="{x:Type Ellipse}">
-                                                    <Setter Property="Fill" Value="Transparent" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding  SelectedFriend.Status}"  Value="Online">
-                                                            <Setter Property="Fill" Value="#6FCE25" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Ellipse.Style>
-                                        </Ellipse>
-                                        <TextBlock Margin="5 5 10 0" FontSize="14" Text="{Binding SelectedFriend.Status}" >
-                                            <TextBlock.Style>
-                                                <Style TargetType="{x:Type TextBlock}">
-                                                    <Setter  Property="Foreground"  Value="LightGray"></Setter>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding  SelectedFriend.Status}"  Value="Online">
-                                                            <Setter Property="Foreground" Value="#6FCE25" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
+                                                        <Ellipse Margin="0 10" Height="5" Width="5">
+                                                            <Ellipse.Style>
+                                                                <Style TargetType="{x:Type Ellipse}">
+                                                                    <Setter Property="Fill" Value="Transparent" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding  Status}"  Value="Online">
+                                                                            <Setter Property="Fill" Value="#6FCE25" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Ellipse.Style>
+                                                        </Ellipse>
+                                                        <TextBlock Margin="5 5 10 0" FontSize="14" Text="{Binding Status}" >
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter  Property="Foreground"  Value="LightGray"></Setter>
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding  SelectedFriend.Status}"  Value="Online">
+                                                                            <Setter Property="Foreground" Value="#6FCE25" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </StackPanel>-->
 
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </StackPanel>
-
-
-                                </Grid>
-                            </Border>
-
+                                                </Grid>
+                                            </Border>
+                                            
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>                         
+                            
 
 
                         </Grid>

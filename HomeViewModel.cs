@@ -117,6 +117,7 @@ namespace GameProj
 
         public ICommand SeeMoreTournaments { get; set; }
         public ICommand SeeMoreFavorites { get; set; }
+        public ICommand OpenChatWindow { get; set; }
 
 
         private string _searchOnlineUsers;
@@ -280,8 +281,9 @@ namespace GameProj
             SeeMoreMPGames = new CommandHandler(btnSeeMoreMPGames_Click);
             SeeMoreChallenges = new CommandHandler(btnSeeMoreChallenges_Click);
             SeeMoreTournaments = new CommandHandler(btnSeeMoreTournaments_Click);
-            SeeMoreFavorites = new CommandHandler(btnSeeMoreFavorites_Click);            
-
+            SeeMoreFavorites = new CommandHandler(btnSeeMoreFavorites_Click);
+            OpenChatWindow = new CommandHandler(OpenChatWindow_Click);
+            
 
             fromNews = 1;
             toNews = 5;
@@ -307,6 +309,11 @@ namespace GameProj
             IsSeeMoreChallenges = Visibility.Visible;
             IsSeeMoreTournaments = Visibility.Visible;
             // lbNews.ItemsSource = newsVM;
+        }
+
+        private void OpenChatWindow_Click()
+        {
+            MessageBox.Show("User Selected - " + SelectedFriend.UserName);
         }
 
         void timer_Tick(object sender, EventArgs e)
