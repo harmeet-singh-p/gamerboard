@@ -562,7 +562,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
 
-                                        <Border Width="262" Margin="15 0 0 5"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                                        <Border Width="262" Margin="15 3 0 3"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                                
                                                 <Grid >
