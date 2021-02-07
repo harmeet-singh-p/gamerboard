@@ -97,12 +97,16 @@
                                     <WrapPanel Orientation="Horizontal" Width="650" Height="160" Name="wp_fliter_items"></WrapPanel>
                                 </StackPanel>
                             </Grid>
-                            <Grid Grid.Row="1">
-                                <ContentControl Content="{Binding LoadedObject}"></ContentControl>
-                            </Grid>
-                            <Viewbox Stretch="Fill" Margin="100,0,0,0">
-                                <StackPanel x:Name="sp_gamelist" HorizontalAlignment="Center" Width="1200"></StackPanel>
-                            </Viewbox>
+                            
+                            <Grid Name="grid_right_bottom" Grid.Row="1">
+                                <ContentControl x:Name="ccRuntime" Content="{Binding LoadedObject}"></ContentControl>
+
+                                <ScrollViewer x:Name="sv_gamelist" VerticalScrollBarVisibility="Hidden"  Style="{StaticResource style_mainwindow_sv_content}">
+                                    <StackPanel x:Name="sp_gamelist" HorizontalAlignment="Center" Width="1200" ></StackPanel>
+                                </ScrollViewer> 
+
+                            </Grid>                 
+                            
                         </Grid>
                     
                 <ScrollViewer x:Name="sv_dummy" Grid.Column="1" Visibility="Collapsed">
@@ -111,6 +115,7 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
+           
         </Border>
         <Viewbox Name="ViewAddElement" Visibility="Collapsed">
         </Viewbox>

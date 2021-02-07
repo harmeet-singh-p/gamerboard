@@ -762,6 +762,25 @@
         </Setter>
     </Style>
 
+
+    <Style x:Key="style_mainwindow_border_category_filter" TargetType="{x:Type Border}">
+        <Setter Property="Tag" Value=""></Setter>
+        <Setter Property="Height" Value="30"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="Background" Value="{DynamicResource color_bg_category_filter}"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
+        <Setter Property="BorderBrush" Value="{DynamicResource color_bg_category_filter}"></Setter>
+        <Setter Property="CornerRadius" Value="5"></Setter>
+    </Style>
+
+    <Style x:Key="style_mainwindow_textbox_category_filter" TargetType="{x:Type TextBlock}">
+        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        <Setter Property="Margin" Value="5"></Setter>
+        <Setter Property="FontSize" Value="12"></Setter>
+        <Setter Property="FontWeight" Value="bold"></Setter>
+    </Style>
+
     <Style x:Key="style_mainwindow_button_eighth_sidemenu_clicked" TargetType="{x:Type Button}">
         <Setter Property="Control.Template">
             <Setter.Value>
@@ -844,23 +863,8 @@
     <!-- End Button-->
 
 
-    <Style x:Key="style_mainwindow_border_category_filter" TargetType="{x:Type Border}">
-        <Setter Property="Tag" Value=""></Setter>
-        <Setter Property="Height" Value="30"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
-        <Setter Property="Background" Value="{DynamicResource color_bg_category_filter}"></Setter>
-        <Setter Property="BorderThickness" Value="1"></Setter>
-        <Setter Property="BorderBrush" Value="{DynamicResource color_bg_category_filter}"></Setter>
-        <Setter Property="CornerRadius" Value="5"></Setter>
-    </Style>
 
-    <Style x:Key="style_mainwindow_textbox_category_filter" TargetType="{x:Type TextBlock}">
-        <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="Margin" Value="5"></Setter>
-        <Setter Property="FontSize" Value="12"></Setter>
-        <Setter Property="FontWeight" Value="bold"></Setter>
-    </Style>
+   
 
 
     <!-- Grid-->

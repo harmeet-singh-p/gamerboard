@@ -259,27 +259,35 @@
     <Content Include="images\fortnite.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage.png" />
     <Content Include="images\gameImage.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage2.png" />
     <Content Include="images\gameImage2.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage5.png" />
     <Content Include="images\gameImage5.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage6.png" />
     <Content Include="images\gameImage6.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage7.png" />
     <Content Include="images\gameImage7.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImage8.png" />
     <Content Include="images\gameImage8.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImageFour.png" />
     <Content Include="images\gameImageFour.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="images\gameImageThree.png" />
     <Content Include="images\gameImageThree.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

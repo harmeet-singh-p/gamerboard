@@ -367,9 +367,15 @@ namespace GameProj
 
                 DependencyObject visual = VisualTreeHelper.GetChild(parent, i);
 
-                if (visual is FrameworkElement)
+                try
                 {
-                    (visual as FrameworkElement).ApplyTemplate();
+                    if (visual is FrameworkElement)
+                    {
+                        (visual as FrameworkElement).ApplyTemplate();
+                    }
+                }
+                catch (Exception ex)
+                {
                 }
 
                 if (helper.DoesMatch(visual))

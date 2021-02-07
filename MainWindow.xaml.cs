@@ -56,6 +56,8 @@ namespace GameProj
             mainWindowViewModel = new MainWindowViewModel();
             mainWindowViewModel.LoadedObject = homeViewModel;
             this.DataContext = mainWindowViewModel;
+            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+            bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bg_RunWorkerCompleted);
         }
 
         private void GameList_Loaded(object sender, RoutedEventArgs e)
@@ -538,6 +540,10 @@ namespace GameProj
             {
                 ResetMenuButton();
                 ShowContent("main");
+                grid_right_bottom.Visibility = Visibility.Visible;
+                ccRuntime.Visibility = Visibility.Visible;
+                sv_gamelist.Visibility = Visibility.Collapsed;
+                //grid_right_bottom.Children.Add(ccRuntime);
                 var obj = (Button)sender;
                 if (obj.Tag.ToString() == "clicked")
                 {
@@ -563,6 +569,12 @@ namespace GameProj
             try
             {
                 ResetMenuButton();
+               // grid_right_bottom.Children.Clear();
+                ccRuntime.Visibility = Visibility.Collapsed;
+
+                //grid_right_bottom.Children.Add(sp_gamelist);
+                //ViewAddElement.Visibility = Visibility.Visible;
+                sv_gamelist.Visibility = Visibility.Visible;
                 ShowContent("games");
                 var obj = (Button)sender;
                 if (obj.Tag.ToString() == "clicked")
@@ -695,6 +707,11 @@ namespace GameProj
             {
                 ResetMenuButton();
                 mainWindowViewModel.LoadedObject = leadersViemModel;
+                grid_right_bottom.Visibility = Visibility.Visible;
+                ccRuntime.Visibility = Visibility.Visible;
+                sv_gamelist.Visibility = Visibility.Collapsed;
+                
+                //grid_right_bottom.Children.Add(ccRuntime);
                 var obj = (Button)sender;
                 if (obj.Tag.ToString() == "clicked")
                 {
@@ -764,7 +781,7 @@ namespace GameProj
                 {
                     mainWindowViewModel.LoadedObject = homeViewModel;
                     //sv_content.Visibility = Visibility.Visible;
-                    //sv_dummy.Visibility = Visibility.Collapsed;
+                    sv_dummy.Visibility = Visibility.Collapsed;
                 }
                 else if(name  == "games")
                 {
