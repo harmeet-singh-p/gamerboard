@@ -512,8 +512,8 @@
                                 <TextBlock Grid.Row="1" Height="2" Background="#141416" Margin="0 0 0 10" ></TextBlock>
                             </Grid>
 
-                            <Border Margin="20 0 0 0" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
+                            <Border Margin="20 0 5 0" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                 <StackPanel Margin="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Image Source="images/img-search.png" Margin="5 0 5 0" Width="25" Height="25" HorizontalAlignment="Left"/>
                                     <Grid >
@@ -562,7 +562,7 @@
                                         <DataTemplate>
 
                                         <Border Margin="15 3 0 3" MinWidth="280"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
-                                   HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
+                                   HorizontalAlignment="Stretch" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                                
                                                 <Grid >
                                                     <Grid.ColumnDefinitions>
