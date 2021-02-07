@@ -71,6 +71,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -84,9 +85,11 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="BindedTableInfo.cs" />
     <Compile Include="ChallengeModel.cs" />
+    <Compile Include="Class\BaseWPFHelpers.cs" />
+    <Compile Include="Class\Common.cs" />
     <Compile Include="CommandHandler.cs" />
-    <Compile Include="Common.cs" />
     <Compile Include="DataAccess.cs" />
+    <Compile Include="DB\gamelistDB.cs" />
     <Compile Include="DetailViewModel.cs" />
     <Compile Include="FavoritesViewModel.cs" />
     <Compile Include="GamesList.cs" />

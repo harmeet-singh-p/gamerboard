@@ -377,10 +377,12 @@
             </Grid>
 
             <Grid Grid.Row="0" Grid.Column="2" x:Name="Right"  >
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
+                
                 <Border Margin="0 0 0 30" CornerRadius="5"  Background="{StaticResource color_bg_smallgrid}"  >
                     <Grid x:Name="TopRight" >
                         <Grid.RowDefinitions>
@@ -492,13 +494,10 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"></RowDefinition>
                                 <RowDefinition  Height="65"></RowDefinition>
-                                <RowDefinition Height="*"></RowDefinition>                                
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                                <RowDefinition  Height="*"></RowDefinition>                                
+                            </Grid.RowDefinitions>                           
 
-                            <Grid  Grid.Row="0">
+                            <Grid  Grid.Row="0"  >
                                 <Grid.RowDefinitions>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
@@ -513,7 +512,7 @@
                                 <TextBlock Grid.Row="1" Height="2" Background="#141416" Margin="0 0 0 10" ></TextBlock>
                             </Grid>
 
-                            <Border Margin="20 0 0 0" Width="262" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                            <Border Margin="20 0 0 0" Grid.Row="1" BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                 <StackPanel Margin="5"  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
                                     <Image Source="images/img-search.png" Margin="5 0 5 0" Width="25" Height="25" HorizontalAlignment="Left"/>
@@ -521,7 +520,7 @@
                                         <Grid.Resources>
                                             <local:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter"></local:TextInputToVisibilityConverter>
                                         </Grid.Resources>
-                                        <TextBlock  FontFamily="Helvetica" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7 6 0 0" 
+                                        <TextBlock   VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7 6 0 0" 
                                                     Height="25" Text="Find Friends"
                                                     Foreground="#454751" FontSize="16" >
                                             <TextBlock.Visibility>
@@ -531,7 +530,7 @@
                                                 </MultiBinding>
                                             </TextBlock.Visibility>
                                         </TextBlock>
-                                        <TextBox Background="Transparent"
+                                        <TextBox MinWidth="230" Background="Transparent"
                                                     Name="txtsearchfriends" FontFamily="Helvetica"  Height="25" Foreground="#595C6A" Margin="3 6 0 0"
                                                  BorderBrush="Transparent" VerticalAlignment="Center" BorderThickness="0"
                                                     FontSize="16" Text="{Binding SearchOnlineUsers, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True}" />
@@ -562,7 +561,7 @@
                                     <ListBox.ItemTemplate>
                                         <DataTemplate>
 
-                                        <Border Width="262" Margin="15 3 0 3"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
+                                        <Border Margin="15 3 0 3" MinWidth="280"  BorderBrush="{DynamicResource color_search_border_bg}" BorderThickness="1"
                                    HorizontalAlignment="Left" VerticalAlignment="Center" Opacity="60" Background="#26272B"  CornerRadius="5">
                                                
                                                 <Grid >
@@ -571,7 +570,8 @@
                                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                                         <ColumnDefinition Width="Auto"></ColumnDefinition>
                                                     </Grid.ColumnDefinitions>
-                                                <Border Margin="10 0 0 0" BorderBrush="{StaticResource color_search_border_bg}"  Width="35"
+                                                    
+                                                <Border Grid.Column="0" Margin="10 0 0 0" BorderBrush="{StaticResource color_search_border_bg}"  Width="35"
                                                             Height="35" CornerRadius="5">
                                                     <StackPanel Orientation="Horizontal">
                                                         <Button Height="30" Width="30" BorderThickness="0">
@@ -593,23 +593,20 @@
                                                             </Ellipse.Style>
                                                         </Ellipse>
                                                     </StackPanel>
-                                                    <!--<Border.Background>
-                                                        <ImageBrush Stretch="Fill" local:ImageSourceAttachedProperty.SvgSource="{Binding Userimg}" />
-                                                    </Border.Background>-->
-                                                    
+                                                                                                      
                                                 </Border>
 
-                                                <StackPanel Grid.Column="1" Margin="5 5 5 5" Orientation="Vertical">
+                                                <StackPanel Grid.Column="1" Margin="0 5 0 5" Orientation="Vertical">
                                                     <TextBlock FontSize="16" FontWeight="Bold" Margin="10 0 0 0" Foreground="{StaticResource color_username}" VerticalAlignment="Center"
                                                        HorizontalAlignment="Left" Text="{Binding UserName}"></TextBlock>
-                                                                <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="#4E505B" VerticalAlignment="Center"
+                                                    <TextBlock FontSize="14" Margin="10 0 0 0" Foreground="#4E505B" VerticalAlignment="Center"
                                                        HorizontalAlignment="Left">
                                                         <Run Text="Playing Now : " ></Run>
                                                         <Run Text="{Binding CurrentGame}" ></Run>
                                                     </TextBlock>
                                                 </StackPanel>
 
-                                                <Button Grid.Column="2" Background="Transparent" BorderThickness="0" Style="{StaticResource style_button_OpenChatWindow}"
+                                                <Button Grid.Column="2" Width="35" Background="Transparent" BorderThickness="0" Style="{StaticResource style_button_OpenChatWindow}"
                                                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBox}},Path=DataContext.OpenChatWindow}" CommandParameter="{Binding}">                                                    
                                                 </Button>
                                                
